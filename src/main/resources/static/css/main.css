@@ -101,7 +101,6 @@ td.uh-pre {
 
 div .panel > .panel-heading {
     background-color: #f5f8ff;
-    border-radius: 5px;
 }
 
 .footer {
@@ -198,5 +197,3 @@ div .panel > .panel-heading {
 .navbar-default[style] {
     padding-right: 0px !important;
 }
-
-
