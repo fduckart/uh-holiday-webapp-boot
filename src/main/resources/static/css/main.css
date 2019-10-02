@@ -198,10 +198,10 @@ div .panel > .panel-heading {
     padding-right: 0px !important;
 }
 
-.modal-header{  /*curvature edit on the pop-up screen window for the top left and right borders */
+.modal-header{  /*curvature edit on the holidays pop-up screen window (when clicking on the holidays table) for the top left and right borders */
     border-radius: 20px;
 }
 
-.modal-footer{  /*curvature edit on the pop-up screen window for the bottom left and right borders */
+.modal-footer{  /*curvature edit on the holidays pop-up screen window (when clicking on the holidays table) for the bottom left and right borders */
     border-radius: 20px;
 }
