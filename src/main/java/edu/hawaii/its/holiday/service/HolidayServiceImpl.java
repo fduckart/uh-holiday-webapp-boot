@@ -107,7 +107,7 @@ public class HolidayServiceImpl implements HolidayService {
     }
 
     @Scheduled(fixedRate = 5000)
-    @CacheEvict(value = "Holidays", allEntries = true)
+    //@CacheEvict(value = "Holidays")
     @Override
     public Holiday findClosestHolidayByDate(String date, boolean forward) {
         List<Holiday> holidays = holidayRepository.findAllByOrderByObservedDateDesc();
