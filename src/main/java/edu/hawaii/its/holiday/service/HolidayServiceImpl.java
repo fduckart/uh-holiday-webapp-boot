@@ -107,7 +107,7 @@ public class HolidayServiceImpl implements HolidayService {
     }
 
     @Scheduled(fixedRate = 5000) //schedules a rate every 5 seconds when the findClosestHolidayByDate algorithm runs
-    //@CacheEvict(value = "Holidays")
+    //@CacheEvict(value = "Holidays") //possible cache clearance just in case the @Scheduled operator doesn't work
     @Override
     public Holiday findClosestHolidayByDate(String date, boolean forward) {
         List<Holiday> holidays = holidayRepository.findAllByOrderByObservedDateDesc();
