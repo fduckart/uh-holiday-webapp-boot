@@ -10,12 +10,15 @@ import edu.hawaii.its.holiday.type.Type;
 import edu.hawaii.its.holiday.type.UserRole;
 import edu.hawaii.its.holiday.util.Dates;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
@@ -103,6 +106,8 @@ public class HolidayServiceImpl implements HolidayService {
         return holidayRepository.findAllByOfficialDateBetween(start, end);
     }
 
+    @Scheduled(fixedRate = 5000)
+    @CacheEvict(value = "Holidays", allEntries = true)
     @Override
     public Holiday findClosestHolidayByDate(String date, boolean forward) {
         List<Holiday> holidays = holidayRepository.findAllByOrderByObservedDateDesc();
