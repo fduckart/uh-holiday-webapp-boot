@@ -42,6 +42,7 @@ public class HolidayServiceImpl implements HolidayService {
     @Override
     @Transactional(readOnly = true)
     @Cacheable(value = "holidaysById", key = "#id")
+    //Evict Holidays cache here
     public Holiday findHoliday(Integer id) {
         return holidayRepository.findById(id).get();
     }
@@ -49,6 +50,7 @@ public class HolidayServiceImpl implements HolidayService {
     @Override
     @Transactional(readOnly = true)
     @Cacheable(value = "holidays")
+    //Evict Holidays cache here
     public List<Holiday> findHolidays() {
         return holidayRepository.findAllByOrderByObservedDateDesc();
     }
@@ -105,7 +107,7 @@ public class HolidayServiceImpl implements HolidayService {
         }
         return holidayRepository.findAllByOfficialDateBetween(start, end);
     }
-    
+
     @Override
     public Holiday findClosestHolidayByDate(String date, boolean forward) {
         List<Holiday> holidays = holidayRepository.findAllByOrderByObservedDateDesc();

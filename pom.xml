@@ -46,7 +46,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
-
+        <!-- add scheduler starter pom here -->
         <!-- Hot swapping, disable cache for template, enable live reload -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
