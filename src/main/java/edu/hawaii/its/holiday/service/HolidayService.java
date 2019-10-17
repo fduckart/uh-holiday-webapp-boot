@@ -39,4 +39,6 @@ public interface HolidayService {
     List<String> findAllDescriptions();
 
     Page<Holiday> findPaginatedHdays(final int page, final int size);
+
+    void evictHolidays();
 }

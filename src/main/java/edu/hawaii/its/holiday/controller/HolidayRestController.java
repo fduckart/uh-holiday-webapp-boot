@@ -122,20 +122,7 @@ public class HolidayRestController {
     public void setAge(int age){
         this.age = age;
     }
-    @GetMapping(value = "api/holidays/closest") //getter for pulling the algorithm out of the object
-    public void getFindClosestHolidayByDate(@RequestParam("date") String date,
-                                       @RequestParam(value = "search-forward", defaultValue = "true", required = false) boolean forward,
-                                       @RequestParam(value = "type", defaultValue = "uh") String type){
-        return;
-    }
 
-    @GetMapping(value = "api/holidays/closest") //setter for pulling the algorithm out of the object
-    public void setFindClosestHolidayByDate(){
-        JsonData<Holiday> data = new JsonData<>(holidayService.findClosestHolidayByDate(date, forward, type));
-        return ResponseEntity
-                .ok()
-                .body(data)
-    }
 
     @GetMapping(value = "rest/inYear")
     public ResponseEntity<JsonData<List<Holiday>>> holidaysByYearParam(

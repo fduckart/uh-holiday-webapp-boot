@@ -62,7 +62,7 @@ public class Holiday implements Serializable {
     private List<Type> types = new ArrayList<>(0);
 
     @Transient
-    private boolean closest;
+    private boolean closest; //delete closest
 
     // Constructor.
     public Holiday() {

@@ -12,13 +12,13 @@ import edu.hawaii.its.holiday.util.Dates;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.scheduling.annotation.Scheduled;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
@@ -42,7 +42,6 @@ public class HolidayServiceImpl implements HolidayService {
     @Override
     @Transactional(readOnly = true)
     @Cacheable(value = "holidaysById", key = "#id")
-    //Evict Holidays cache here
     public Holiday findHoliday(Integer id) {
         return holidayRepository.findById(id).get();
     }
@@ -50,7 +49,6 @@ public class HolidayServiceImpl implements HolidayService {
     @Override
     @Transactional(readOnly = true)
     @Cacheable(value = "holidays")
-    //Evict Holidays cache here
     public List<Holiday> findHolidays() {
         return holidayRepository.findAllByOrderByObservedDateDesc();
     }
@@ -73,6 +71,13 @@ public class HolidayServiceImpl implements HolidayService {
     @Cacheable(value = "holidayTypes")
     public List<Type> findTypes() {
         return typeRepository.findAll();
+    }
+
+    @Caching(evict = {
+            @CacheEvict(value = "holidays", allEntries = true),
+            @CacheEvict(value = "holidaysById", allEntries = true)})
+    public void evictHolidays(){
+        //empty on purpose
     }
 
     @Override
