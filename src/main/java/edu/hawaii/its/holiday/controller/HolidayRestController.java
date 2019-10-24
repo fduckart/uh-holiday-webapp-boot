@@ -17,6 +17,7 @@ import java.util.List;
 public class HolidayRestController {
 
     private static final Logger logger = LoggerFactory.getLogger(HolidayRestController.class);
+
     @Autowired
     private HolidayService holidayService;
 
@@ -115,14 +116,6 @@ public class HolidayRestController {
                 .ok()
                 .body(data);
     }
-    private int age;
-    public int getAge(){
-        return age;
-    }
-    public void setAge(int age){
-        this.age = age;
-    }
-
 
     @GetMapping(value = "rest/inYear")
     public ResponseEntity<JsonData<List<Holiday>>> holidaysByYearParam(

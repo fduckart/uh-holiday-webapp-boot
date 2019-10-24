@@ -74,9 +74,9 @@ public class HolidayServiceImpl implements HolidayService {
     }
 
     @Caching(evict = {
-            @CacheEvict(value = "holidays", allEntries = true),
-            @CacheEvict(value = "holidaysById", allEntries = true)})
-    public void evictHolidays(){
+            @CacheEvict(value = "holidays", allEntries = true), //evicting the holidays cache
+            @CacheEvict(value = "holidaysById", allEntries = true)}) //evicting the holidaysById cache
+    public void evictHolidaysCache(){ //function to evict the Holidays cache
         //empty on purpose
     }
 

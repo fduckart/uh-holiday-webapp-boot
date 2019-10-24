@@ -15,8 +15,8 @@ public class ScheduledTasks {
     private HolidayService holidayService;
 
     @Scheduled(cron = "0 1 0 * * *")
-    public void evictHolidays() {
+    public void evictHolidaysCache() {
         logger.info("Evicting the Holiday Cache");
-        holidayService.evictHolidays();
+        holidayService.evictHolidaysCache();
     }
 }

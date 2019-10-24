@@ -40,5 +40,5 @@ public interface HolidayService {
 
     Page<Holiday> findPaginatedHdays(final int page, final int size);
 
-    void evictHolidays();
+    void evictHolidaysCache();
 }
