@@ -83,7 +83,6 @@ function HolidayGridJsController($scope, holidayJsService) {
     });
 
     $scope.gridOptions = {
-
         paginationPageSizes: [10, 15, 20, 250],
         paginationPageSize: options.pageSize,
         enableColumnMenus: false,
@@ -113,13 +112,12 @@ holidayApp.controller("HolidayGridJsController", HolidayGridJsController);
 
 
 function TypesJsController($scope, $log, dataProvider) {
-    var URL_LOAD = 'api/types';
+    var URL_LOAD = "api/types";
     $scope.types = [];
-    $log.debug('constructed.');
-    console.log('constructed');
+    $log.debug("constructed.");
     
     $scope.init = function() {
-        $log.debug('init; started.');
+        $log.debug("init; started.");
         $scope.loadData();
     };
 
@@ -127,7 +125,7 @@ function TypesJsController($scope, $log, dataProvider) {
         dataProvider.loadData(function(data) {
             $scope.types = data.data;
         }, URL_LOAD);        
-    }
+    };
 }
 holidayApp.controller("TypesJsController", TypesJsController);
 
