@@ -21,7 +21,7 @@ body {
 }
 
 h3 {
-  color: #BD9319;
+  color: #bd9319;
 }
 
 a {
@@ -131,7 +131,7 @@ div .panel > .panel-heading {
 
   .navbar-fixed-top .navbar-brand > img {
     position: fixed;
-    top: 0px;
+    top: 0;
     left: 25px;
     height: 90px;
     width: 90px;
@@ -140,7 +140,7 @@ div .panel > .panel-heading {
 
   .navbar-brand.uh-nav-app-name {
     position: fixed;
-    top: 0px;
+    top: 0;
     left: 115px;
     height: 90px;
     width: auto;
@@ -164,7 +164,7 @@ div .panel > .panel-heading {
 .type-list {
   display: inline;
   list-style: none;
-  padding-inline-start: 0px;
+  padding-inline-start: 0;
 }
 
 .type-list li {
@@ -180,7 +180,7 @@ div .panel > .panel-heading {
 }
 
 .highlight {
-  background-color: #F5F8FF;
+  background-color: #f5f8ff;
 }
 
 .noselect {
@@ -195,17 +195,17 @@ div .panel > .panel-heading {
 }
 
 .modal-open[style] {
-  padding-right: 0px !important;
+  padding-right: 0 !important;
 }
 
 .navbar-default[style] {
-  padding-right: 0px !important;
+  padding-right: 0 !important;
 }
 
 .modal-header {
-  padding:9px 15px;
-  border-bottom:1px solid #eee;
-  background-color: #F5F8FF;
+  padding: 9px 15px;
+  border-bottom: 1px solid #eee;
+  background-color: #f5f8ff;
   -webkit-border-top-left-radius: 5px;
   -webkit-border-top-right-radius: 5px;
   -moz-border-radius-topleft: 5px;
