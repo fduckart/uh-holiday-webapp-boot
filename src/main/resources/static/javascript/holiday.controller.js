@@ -110,3 +110,24 @@ function HolidayGridJsController($scope, holidayJsService) {
 }
 
 holidayApp.controller("HolidayGridJsController", HolidayGridJsController);
+
+
+function TypesJsController($scope, $log, dataProvider) {
+    var URL_LOAD = 'api/types';
+    $scope.types = [];
+    $log.debug('constructed.');
+    console.log('constructed');
+    
+    $scope.init = function() {
+        $log.debug('init; started.');
+        $scope.loadData();
+    };
+
+    $scope.loadData = function() {
+        dataProvider.loadData(function(data) {
+            $scope.types = data.data;
+        }, URL_LOAD);        
+    }
+}
+holidayApp.controller("TypesJsController", TypesJsController);
+

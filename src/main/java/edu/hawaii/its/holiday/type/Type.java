@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "type")
 public class Type implements Serializable {
@@ -17,11 +15,9 @@ public class Type implements Serializable {
 
     @Id
     @Column(name = "id")
-    @JsonIgnore
     private Integer id;
 
     @Column(name = "version")
-    @JsonIgnore
     private Integer version;
 
     @Column(name = "description")

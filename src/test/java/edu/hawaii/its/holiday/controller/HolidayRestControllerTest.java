@@ -192,10 +192,10 @@ public class HolidayRestControllerTest {
     public void httpGetHolidaysByMonthParams() throws Exception {
         MvcResult result;
 
-        result = mockMvc.perform(get("/api/holidays/month/1?type=state"))
+        result = mockMvc.perform(get("/api/holidays/month/1?type=state&year=2021"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("data", hasSize(0)))
+                .andExpect(jsonPath("data", hasSize(2)))
                 .andReturn();
         assertNotNull(result);
 
