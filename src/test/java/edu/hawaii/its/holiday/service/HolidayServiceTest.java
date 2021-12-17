@@ -1,16 +1,31 @@
 package edu.hawaii.its.holiday.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.hawaii.its.holiday.configuration.SpringBootWebApplication;
-import edu.hawaii.its.holiday.type.*;
-import edu.hawaii.its.holiday.util.Dates;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.annotation.DirtiesContext.ClassMode;
-import org.springframework.test.context.junit4.SpringRunner;
+import static edu.hawaii.its.holiday.util.Algorithms.observedChristmasDay;
+import static edu.hawaii.its.holiday.util.Algorithms.observedDiscoverersDay;
+import static edu.hawaii.its.holiday.util.Algorithms.observedElectionDay;
+import static edu.hawaii.its.holiday.util.Algorithms.observedIndependenceDay;
+import static edu.hawaii.its.holiday.util.Algorithms.observedKingKamehamehaDay;
+import static edu.hawaii.its.holiday.util.Algorithms.observedLaborDay;
+import static edu.hawaii.its.holiday.util.Algorithms.observedMartinLutherKingJrDay;
+import static edu.hawaii.its.holiday.util.Algorithms.observedMemorialDay;
+import static edu.hawaii.its.holiday.util.Algorithms.observedNewYearsDay;
+import static edu.hawaii.its.holiday.util.Algorithms.observedPresidentsDay;
+import static edu.hawaii.its.holiday.util.Algorithms.observedPrinceKuhioDay;
+import static edu.hawaii.its.holiday.util.Algorithms.observedStatehoodDay;
+import static edu.hawaii.its.holiday.util.Algorithms.observedThanksgivingDay;
+import static edu.hawaii.its.holiday.util.Algorithms.observedVeteransDay;
+import static edu.hawaii.its.holiday.util.Algorithms.occurence;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -21,12 +36,23 @@ import java.util.List;
 import java.util.Set;
 import java.util.TimeZone;
 
-import static edu.hawaii.its.holiday.util.Algorithms.*;
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 
-@RunWith(SpringRunner.class)
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import edu.hawaii.its.holiday.configuration.SpringBootWebApplication;
+import edu.hawaii.its.holiday.type.Designation;
+import edu.hawaii.its.holiday.type.Holiday;
+import edu.hawaii.its.holiday.type.HolidayAdjuster;
+import edu.hawaii.its.holiday.type.Type;
+import edu.hawaii.its.holiday.type.UserRole;
+import edu.hawaii.its.holiday.util.Dates;
+import edu.hawaii.its.holiday.util.Strings;
+
 @SpringBootTest(classes = { SpringBootWebApplication.class })
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
 public class HolidayServiceTest {
@@ -55,6 +81,7 @@ public class HolidayServiceTest {
 
         assertThat(h2.getId(), equalTo(1001));
         assertThat(h2.getDescription(), equalTo("New Year's Day"));
+        assertThat(h2.getTypes().size(), equalTo(2));
 
         // Make sure they all have Types
         for (Holiday h : holidays) {
@@ -132,10 +159,10 @@ public class HolidayServiceTest {
         assertEquals("New Year's Day", h1.getDescription());
 
         Holiday h2 = holidayService.findHoliday(2);
-        assertEquals("Martin Luther King Jr. Day", h2.getDescription());
+        assertEquals("Dr. Martin Luther King, Jr. Day", h2.getDescription());
 
         Holiday h4 = holidayService.findHoliday(4);
-        assertEquals("Prince Kuhio Day", h4.getDescription());
+        assertEquals("Prince Jonah Kuhio Kalanianaole Day", h4.getDescription());
 
         assertEquals(2, h1.getTypes().size());
         assertEquals(2, h2.getTypes().size());
@@ -179,39 +206,39 @@ public class HolidayServiceTest {
         assertThat(holidayService.findHolidaysByYear(2020).size(), equalTo(14));
         assertThat(holidayService.findHolidaysByYear(2021).size(), equalTo(13));
         assertThat(holidayService.findHolidaysByYear(2022).size(), equalTo(14));
-        assertThat(holidayService.findHolidaysByYear(2023).size(), equalTo(0));
+        assertThat(holidayService.findHolidaysByYear(2023).size(), equalTo(13));
     }
 
     @Test
     public void findHolidaysByMonth() {
-        assertThat(holidayService.findHolidaysByMonth(01,2019).size(), equalTo(2));
+        assertThat(holidayService.findHolidaysByMonth(01, 2019).size(), equalTo(2));
         assertThat(holidayService.findHolidaysByMonth(02, 2019).size(), equalTo(1));
         assertThat(holidayService.findHolidaysByMonth(03, 2019).size(), equalTo(1));
-        assertThat(holidayService.findHolidaysByMonth(04,2019).size(), equalTo(1));
-        assertThat(holidayService.findHolidaysByMonth(05,2019).size(),equalTo(1));
-        assertThat(holidayService.findHolidaysByMonth(06,2019).size(),equalTo(1));
-        assertThat(holidayService.findHolidaysByMonth(07,2019).size(),equalTo(1));
-        assertThat(holidayService.findHolidaysByMonth(8,2019).size(),equalTo(1));
-        assertThat(holidayService.findHolidaysByMonth(9,2019).size(),equalTo(1));
-        assertThat(holidayService.findHolidaysByMonth(10,2019).size(),equalTo(0));
-        assertThat(holidayService.findHolidaysByMonth(11,2019).size(),equalTo(2));
-        assertThat(holidayService.findHolidaysByMonth(12,2019).size(),equalTo(1));
+        assertThat(holidayService.findHolidaysByMonth(04, 2019).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByMonth(05, 2019).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByMonth(06, 2019).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByMonth(07, 2019).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByMonth(8, 2019).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByMonth(9, 2019).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByMonth(10, 2019).size(), equalTo(0));
+        assertThat(holidayService.findHolidaysByMonth(11, 2019).size(), equalTo(2));
+        assertThat(holidayService.findHolidaysByMonth(12, 2019).size(), equalTo(1));
     }
 
     @Test
     public void findHolidaysByRange() {
-        assertThat(holidayService.findHolidaysByRange("2019-01-01","2019-01-31", true).size(), equalTo(2));
-        assertThat(holidayService.findHolidaysByRange("2019-02-01","2019-02-28", true).size(), equalTo(1));
-        assertThat(holidayService.findHolidaysByRange("2019-03-01","2019-03-31", true).size(), equalTo(1));
-        assertThat(holidayService.findHolidaysByRange("2019-04-01","2019-04-30", true).size(), equalTo(1));
-        assertThat(holidayService.findHolidaysByRange("2019-05-01","2019-05-31", true).size(), equalTo(1));
-        assertThat(holidayService.findHolidaysByRange("2019-06-01","2019-06-30", true).size(), equalTo(1));
-        assertThat(holidayService.findHolidaysByRange("2019-07-01","2019-07-31", true).size(), equalTo(1));
-        assertThat(holidayService.findHolidaysByRange("2019-08-01","2019-08-31", true).size(), equalTo(1));
-        assertThat(holidayService.findHolidaysByRange("2019-09-01","2019-09-30", true).size(), equalTo(1));
-        assertThat(holidayService.findHolidaysByRange("2019-10-01","2019-10-31", true).size(), equalTo(0));
-        assertThat(holidayService.findHolidaysByRange("2019-11-01","2019-11-30", true).size(), equalTo(2));
-        assertThat(holidayService.findHolidaysByRange("2019-12-01","2019-12-31", true).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByRange("2019-01-01", "2019-01-31", true).size(), equalTo(2));
+        assertThat(holidayService.findHolidaysByRange("2019-02-01", "2019-02-28", true).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByRange("2019-03-01", "2019-03-31", true).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByRange("2019-04-01", "2019-04-30", true).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByRange("2019-05-01", "2019-05-31", true).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByRange("2019-06-01", "2019-06-30", true).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByRange("2019-07-01", "2019-07-31", true).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByRange("2019-08-01", "2019-08-31", true).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByRange("2019-09-01", "2019-09-30", true).size(), equalTo(1));
+        assertThat(holidayService.findHolidaysByRange("2019-10-01", "2019-10-31", true).size(), equalTo(0));
+        assertThat(holidayService.findHolidaysByRange("2019-11-01", "2019-11-30", true).size(), equalTo(2));
+        assertThat(holidayService.findHolidaysByRange("2019-12-01", "2019-12-31", true).size(), equalTo(1));
     }
 
     @Test
@@ -220,7 +247,7 @@ public class HolidayServiceTest {
         assertThat(holiday.getDescription(), equalTo("New Year's Day"));
 
         holiday = holidayService.findClosestHolidayByDate("2019-01-02", true, "uh");
-        assertThat(holiday.getDescription(), equalTo("Martin Luther King Jr. Day"));
+        assertThat(holiday.getDescription(), equalTo("Dr. Martin Luther King, Jr. Day"));
 
         holiday = holidayService.findClosestHolidayByDate("2019-01-02", false, "uh");
         assertThat(holiday.getDescription(), equalTo("New Year's Day"));
@@ -256,7 +283,7 @@ public class HolidayServiceTest {
         assertThat(holiday.getDescription(), equalTo("New Year's Day"));
 
         holiday = holidayService.findClosestHolidayByDate("2019-01-02", true);
-        assertThat(holiday.getDescription(), equalTo("Martin Luther King Jr. Day"));
+        assertThat(holiday.getDescription(), equalTo("Dr. Martin Luther King, Jr. Day"));
 
         holiday = holidayService.findClosestHolidayByDate("2019-01-02", false);
         assertThat(holiday.getDescription(), equalTo("New Year's Day"));
@@ -329,7 +356,7 @@ public class HolidayServiceTest {
 
         List<Holiday> holidays = holidayService.findHolidays();
         for (Holiday h : holidays) {
-            assertTrue(h.toString(), names.contains(h.getDescription()));
+            assertThat(h.toString(), names.contains(h.getDescription()), is(true));
         }
     }
 
@@ -348,7 +375,7 @@ public class HolidayServiceTest {
                     counts[0] += 1;
                     break;
 
-                case "Martin Luther King Jr. Day":
+                case "Dr. Martin Luther King, Jr. Day":
                     date = observedMartinLutherKingJrDay(year);
                     assertThat(date, equalTo(h.getObservedDate()));
                     counts[1] += 1;
@@ -360,7 +387,7 @@ public class HolidayServiceTest {
                     counts[2] += 1;
                     break;
 
-                case "Prince Kuhio Day":
+                case "Prince Jonah Kuhio Kalanianaole Day":
                     date = observedPrinceKuhioDay(year);
                     assertThat(date, equalTo(h.getObservedDate()));
                     counts[3] += 1;
@@ -457,19 +484,24 @@ public class HolidayServiceTest {
     @Test
     public void findAllDescriptions() {
         List<String> descriptions = holidayService.findAllDescriptions();
+        System.out.println(Strings.fill('v', 99));
+        for (String s : descriptions) {
+            System.out.println(" ::: " + s);
+        }
+        System.out.println(Strings.fill('^', 99));
 
         assertThat(descriptions.get(0), equalTo("Christmas"));
         assertThat(descriptions.get(1), equalTo("Discoverers' Day")); // Not a State holiday!
-        assertThat(descriptions.get(2), equalTo("General Election Day"));
-        assertThat(descriptions.get(3), equalTo("Good Friday"));
-        assertThat(descriptions.get(4), equalTo("Independence Day"));
-        assertThat(descriptions.get(5), equalTo("King Kamehameha I Day"));
-        assertThat(descriptions.get(6), equalTo("Labor Day"));
-        assertThat(descriptions.get(7), equalTo("Martin Luther King Jr. Day"));
+        assertThat(descriptions.get(2), equalTo("Dr. Martin Luther King, Jr. Day"));
+        assertThat(descriptions.get(3), equalTo("General Election Day"));
+        assertThat(descriptions.get(4), equalTo("Good Friday"));
+        assertThat(descriptions.get(5), equalTo("Independence Day"));
+        assertThat(descriptions.get(6), equalTo("King Kamehameha I Day"));
+        assertThat(descriptions.get(7), equalTo("Labor Day"));
         assertThat(descriptions.get(8), equalTo("Memorial Day"));
         assertThat(descriptions.get(9), equalTo("New Year's Day"));
         assertThat(descriptions.get(10), equalTo("Presidents' Day"));
-        assertThat(descriptions.get(11), equalTo("Prince Kuhio Day"));
+        assertThat(descriptions.get(11), equalTo("Prince Jonah Kuhio Kalanianaole Day"));
         assertThat(descriptions.get(12), equalTo("Statehood Day"));
         assertThat(descriptions.get(13), equalTo("Thanksgiving"));
         assertThat(descriptions.get(14), equalTo("Veterans' Day"));

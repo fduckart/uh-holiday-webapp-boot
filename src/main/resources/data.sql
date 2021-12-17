@@ -12,9 +12,9 @@ insert into type(id, version, description) values(3, 1, 'UH');
 insert into type(id, version, description) values(4, 1, 'State');
 
 insert into designation(id, name) values( 1, 'New Year''s Day');
-insert into designation(id, name) values( 2, 'Martin Luther King Jr. Day');
+insert into designation(id, name) values( 2, 'Dr. Martin Luther King, Jr. Day');
 insert into designation(id, name) values( 3, 'Presidents'' Day');
-insert into designation(id, name) values( 4, 'Prince Kuhio Day');
+insert into designation(id, name) values( 4, 'Prince Jonah Kuhio Kalanianaole Day');
 insert into designation(id, name) values( 5, 'Good Friday');
 insert into designation(id, name) values( 6, 'Memorial Day');
 insert into designation(id, name) values( 7, 'King Kamehameha I Day');
@@ -28,9 +28,9 @@ insert into designation(id, name) values(14, 'Thanksgiving');
 insert into designation(id, name) values(15, 'Christmas');
 
 insert into holiday (id, version, official_date, observed_date, description) values (1001 , 0, '2006-01-01', '2006-01-02', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (1002 , 0, '2006-01-16', '2006-01-16', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1002 , 0, '2006-01-16', '2006-01-16', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1003 , 0, '2006-02-20', '2006-02-20', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (1004 , 0, '2006-03-27', '2006-03-27', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1004 , 0, '2006-03-27', '2006-03-27', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1005 , 0, '2006-04-14', '2006-04-14', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (1006 , 0, '2006-05-29', '2006-05-29', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1007 , 0, '2006-06-11', '2006-06-12', 'King Kamehameha I Day');
@@ -42,9 +42,9 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (1013 , 0, '2006-11-23', '2006-11-23', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (1014 , 0, '2006-12-25', '2006-12-25', 'Christmas');
 insert into holiday (id, version, official_date, observed_date, description) values (1015 , 0, '2007-01-01', '2007-01-01', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (1016 , 0, '2007-01-15', '2007-01-15', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1016 , 0, '2007-01-15', '2007-01-15', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1017 , 0, '2007-02-19', '2007-02-19', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (1018 , 0, '2007-03-26', '2007-03-26', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1018 , 0, '2007-03-26', '2007-03-26', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1019 , 0, '2007-04-06', '2007-04-06', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (1020 , 0, '2007-05-28', '2007-05-28', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1021 , 0, '2007-06-11', '2007-06-11', 'King Kamehameha I Day');
@@ -55,10 +55,10 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (1026 , 0, '2007-11-22', '2007-11-22', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (1027 , 0, '2007-12-25', '2007-12-25', 'Christmas');
 insert into holiday (id, version, official_date, observed_date, description) values (1028 , 0, '2008-01-01', '2008-01-01', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (1029 , 0, '2008-01-21', '2008-01-21', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1029 , 0, '2008-01-21', '2008-01-21', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1030 , 0, '2008-02-18', '2008-02-18', 'Presidents'' Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1031 , 0, '2008-03-21', '2008-03-21', 'Good Friday');
-insert into holiday (id, version, official_date, observed_date, description) values (1032 , 0, '2008-03-26', '2008-03-26', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1032 , 0, '2008-03-26', '2008-03-26', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1033 , 0, '2008-05-26', '2008-05-26', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1034 , 0, '2008-06-11', '2008-06-11', 'King Kamehameha I Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1035 , 0, '2008-07-04', '2008-07-04', 'Independence Day');
@@ -69,9 +69,9 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (1040 , 0, '2008-11-27', '2008-11-27', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (1041 , 0, '2008-12-25', '2008-12-25', 'Christmas');
 insert into holiday (id, version, official_date, observed_date, description) values (1042 , 0, '2009-01-01', '2009-01-01', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (1043 , 0, '2009-01-19', '2009-01-19', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1043 , 0, '2009-01-19', '2009-01-19', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1044 , 0, '2009-02-16', '2009-02-16', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (1045 , 0, '2009-03-26', '2009-03-26', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1045 , 0, '2009-03-26', '2009-03-26', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1046 , 0, '2009-04-10', '2009-04-10', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (1047 , 0, '2009-05-25', '2009-05-25', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1048 , 0, '2009-06-11', '2009-06-11', 'King Kamehameha I Day');
@@ -82,9 +82,9 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (1053 , 0, '2009-11-26', '2009-11-26', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (1054 , 0, '2009-12-25', '2009-12-25', 'Christmas');
 insert into holiday (id, version, official_date, observed_date, description) values (1055 , 0, '2010-01-01', '2010-01-01', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (1056 , 0, '2010-01-18', '2010-01-18', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1056 , 0, '2010-01-18', '2010-01-18', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1057 , 0, '2010-02-15', '2010-02-15', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (1058 , 0, '2010-03-26', '2010-03-26', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1058 , 0, '2010-03-26', '2010-03-26', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1059 , 0, '2010-04-02', '2010-04-02', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (1060 , 0, '2010-05-31', '2010-05-31', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1061 , 0, '2010-06-11', '2010-06-11', 'King Kamehameha I Day');
@@ -96,9 +96,9 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (1067 , 0, '2010-11-25', '2010-11-25', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (1068 , 0, '2010-12-24', '2010-12-24', 'Christmas');
 insert into holiday (id, version, official_date, observed_date, description) values (15 , 0, '2011-01-01', '2010-12-31', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (16 , 0, '2011-01-17', '2011-01-17', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (16 , 0, '2011-01-17', '2011-01-17', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (17 , 0, '2011-02-21', '2011-02-21', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (18 , 0, '2011-03-26', '2011-03-25', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (18 , 0, '2011-03-26', '2011-03-25', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (19 , 0, '2011-04-22', '2011-04-22', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (20 , 0, '2011-05-30', '2011-05-30', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (21 , 0, '2011-06-11', '2011-06-10', 'King Kamehameha I Day');
@@ -110,9 +110,9 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (27 , 0, '2011-11-24', '2011-11-24', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (28 , 0, '2011-12-25', '2011-12-26', 'Christmas');
 insert into holiday (id, version, official_date, observed_date, description) values (29 , 0, '2012-01-01', '2012-01-02', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (30 , 0, '2012-01-16', '2012-01-16', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (30 , 0, '2012-01-16', '2012-01-16', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (31 , 0, '2012-02-20', '2012-02-20', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (32 , 0, '2012-03-26', '2012-03-26', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (32 , 0, '2012-03-26', '2012-03-26', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (33 , 0, '2012-04-06', '2012-04-06', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (34 , 0, '2012-05-28', '2012-05-28', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (35 , 0, '2012-06-11', '2012-06-11', 'King Kamehameha I Day');
@@ -125,9 +125,9 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (42 , 0, '2012-11-22', '2012-11-22', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (43 , 0, '2012-12-25', '2012-12-25', 'Christmas');
 insert into holiday (id, version, official_date, observed_date, description) values (   1 , 0, '2013-01-01', '2013-01-01', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (   2 , 0, '2013-01-21', '2013-01-21', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (   2 , 0, '2013-01-21', '2013-01-21', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (   3 , 0, '2013-02-18', '2013-02-18', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (   4 , 0, '2013-03-26', '2013-03-26', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (   4 , 0, '2013-03-26', '2013-03-26', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (   5 , 0, '2013-03-29', '2013-03-29', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (   6 , 0, '2013-05-27', '2013-05-27', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (   7 , 0, '2013-06-11', '2013-06-11', 'King Kamehameha I Day');
@@ -139,9 +139,9 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (  13 , 0, '2013-11-28', '2013-11-28', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (  14 , 0, '2013-12-25', '2013-12-25', 'Christmas');
 insert into holiday (id, version, official_date, observed_date, description) values (44 , 0, '2014-01-01', '2014-01-01', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (45 , 0, '2014-01-20', '2014-01-20', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (45 , 0, '2014-01-20', '2014-01-20', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (46 , 0, '2014-02-17', '2014-02-17', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (47 , 0, '2014-03-26', '2014-03-26', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (47 , 0, '2014-03-26', '2014-03-26', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (48 , 0, '2014-04-18', '2014-04-18', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (49 , 0, '2014-05-26', '2014-05-26', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (50 , 0, '2014-06-11', '2014-06-11', 'King Kamehameha I Day');
@@ -154,9 +154,9 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (57 , 0, '2014-11-27', '2014-11-27', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (58 , 0, '2014-12-25', '2014-12-25', 'Christmas');
 insert into holiday (id, version, official_date, observed_date, description) values (59 , 0, '2015-01-01', '2015-01-01', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (60 , 0, '2015-01-19', '2015-01-19', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (60 , 0, '2015-01-19', '2015-01-19', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (61 , 0, '2015-02-16', '2015-02-16', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (62 , 0, '2015-03-26', '2015-03-26', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (62 , 0, '2015-03-26', '2015-03-26', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (63 , 0, '2015-04-03', '2015-04-03', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (64 , 0, '2015-05-25', '2015-05-25', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (65 , 0, '2015-06-11', '2015-06-11', 'King Kamehameha I Day');
@@ -168,10 +168,10 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (71 , 0, '2015-11-26', '2015-11-26', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (72 , 0, '2015-12-25', '2015-12-25', 'Christmas');
 insert into holiday (id, version, official_date, observed_date, description) values (73 , 0, '2016-01-01', '2016-01-01', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (74 , 0, '2016-01-18', '2016-01-18', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (74 , 0, '2016-01-18', '2016-01-18', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (75 , 0, '2016-02-15', '2016-02-15', 'Presidents'' Day');
 insert into holiday (id, version, official_date, observed_date, description) values (76 , 0, '2016-03-25', '2016-03-25', 'Good Friday');
-insert into holiday (id, version, official_date, observed_date, description) values (77 , 0, '2016-03-26', '2016-03-25', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (77 , 0, '2016-03-26', '2016-03-25', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (78 , 0, '2016-05-30', '2016-05-30', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (79 , 0, '2016-06-11', '2016-06-10', 'King Kamehameha I Day');
 insert into holiday (id, version, official_date, observed_date, description) values (80 , 0, '2016-07-04', '2016-07-04', 'Independence Day');
@@ -182,9 +182,9 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (86 , 0, '2016-11-24', '2016-11-24', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (87 , 0, '2016-12-25', '2016-12-26', 'Christmas');
 insert into holiday (id, version, official_date, observed_date, description) values (88 , 0, '2017-01-01', '2017-01-02', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (89 , 0, '2017-01-16', '2017-01-16', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (89 , 0, '2017-01-16', '2017-01-16', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (90 , 0, '2017-02-20', '2017-02-20', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (91 , 0, '2017-03-26', '2017-03-27', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (91 , 0, '2017-03-26', '2017-03-27', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (92 , 0, '2017-04-14', '2017-04-14', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (93 , 0, '2017-05-29', '2017-05-29', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (94 , 0, '2017-06-11', '2017-06-12', 'King Kamehameha I Day');
@@ -195,9 +195,9 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (100 , 0, '2017-11-23', '2017-11-23', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (101 , 0, '2017-12-25', '2017-12-25', 'Christmas');
 insert into holiday (id, version, official_date, observed_date, description) values (102 , 0, '2018-01-01', '2018-01-01', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (103 , 0, '2018-01-15', '2018-01-15', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (103 , 0, '2018-01-15', '2018-01-15', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (104 , 0, '2018-02-19', '2018-02-19', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (105 , 0, '2018-03-26', '2018-03-26', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (105 , 0, '2018-03-26', '2018-03-26', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (106 , 0, '2018-03-30', '2018-03-30', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (107 , 0, '2018-05-28', '2018-05-28', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (108 , 0, '2018-06-11', '2018-06-11', 'King Kamehameha I Day');
@@ -209,9 +209,9 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (114 , 0, '2018-11-22', '2018-11-22', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (115 , 0, '2018-12-25', '2018-12-25', 'Christmas');
 insert into holiday (id, version, official_date, observed_date, description) values (116 , 0, '2019-01-01', '2019-01-01', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (117 , 0, '2019-01-21', '2019-01-21', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (117 , 0, '2019-01-21', '2019-01-21', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (118 , 0, '2019-02-18', '2019-02-18', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (119 , 0, '2019-03-26', '2019-03-26', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (119 , 0, '2019-03-26', '2019-03-26', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (120 , 0, '2019-04-19', '2019-04-19', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (121 , 0, '2019-05-27', '2019-05-27', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (122 , 0, '2019-06-11', '2019-06-11', 'King Kamehameha I Day');
@@ -222,9 +222,9 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (127 , 0, '2019-11-28', '2019-11-28', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (128 , 0, '2019-12-25', '2019-12-25', 'Christmas');
 insert into holiday (id, version, official_date, observed_date, description) values (129 , 0, '2020-01-01', '2020-01-01', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (130 , 0, '2020-01-20', '2020-01-20', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (130 , 0, '2020-01-20', '2020-01-20', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (131 , 0, '2020-02-17', '2020-02-17', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (132 , 0, '2020-03-26', '2020-03-26', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (132 , 0, '2020-03-26', '2020-03-26', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (133 , 0, '2020-04-10', '2020-04-10', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (134 , 0, '2020-05-25', '2020-05-25', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (135 , 0, '2020-06-11', '2020-06-11', 'King Kamehameha I Day');
@@ -235,10 +235,11 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (140 , 0, '2020-11-11', '2020-11-11', 'Veterans'' Day');
 insert into holiday (id, version, official_date, observed_date, description) values (141 , 0, '2020-11-26', '2020-11-26', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (142 , 0, '2020-12-25', '2020-12-25', 'Christmas');
+
 insert into holiday (id, version, official_date, observed_date, description) values (1204 , 0, '2021-01-01', '2021-01-01', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (1205 , 0, '2021-01-18', '2021-01-18', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1205 , 0, '2021-01-18', '2021-01-18', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1206 , 0, '2021-02-15', '2021-02-15', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (1207 , 0, '2021-03-26', '2021-03-26', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1207 , 0, '2021-03-26', '2021-03-26', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1208 , 0, '2021-04-02', '2021-04-02', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (1209 , 0, '2021-05-31', '2021-05-31', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1210 , 0, '2021-06-11', '2021-06-11', 'King Kamehameha I Day');
@@ -248,10 +249,11 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (1214 , 0, '2021-11-11', '2021-11-11', 'Veterans'' Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1215 , 0, '2021-11-25', '2021-11-25', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (1216 , 0, '2021-12-25', '2021-12-24', 'Christmas');
+
 insert into holiday (id, version, official_date, observed_date, description) values (1217 , 0, '2022-01-01', '2021-12-31', 'New Year''s Day');
-insert into holiday (id, version, official_date, observed_date, description) values (1218 , 0, '2022-01-17', '2022-01-17', 'Martin Luther King Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1218 , 0, '2022-01-17', '2022-01-17', 'Dr. Martin Luther King, Jr. Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1219 , 0, '2022-02-21', '2022-02-21', 'Presidents'' Day');
-insert into holiday (id, version, official_date, observed_date, description) values (1220 , 0, '2022-03-26', '2022-03-25', 'Prince Kuhio Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1220 , 0, '2022-03-26', '2022-03-25', 'Prince Jonah Kuhio Kalanianaole Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1221 , 0, '2022-04-15', '2022-04-15', 'Good Friday');
 insert into holiday (id, version, official_date, observed_date, description) values (1222 , 0, '2022-05-30', '2022-05-30', 'Memorial Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1223 , 0, '2022-06-11', '2022-06-10', 'King Kamehameha I Day');
@@ -262,6 +264,20 @@ insert into holiday (id, version, official_date, observed_date, description) val
 insert into holiday (id, version, official_date, observed_date, description) values (1228 , 0, '2022-11-11', '2022-11-11', 'Veterans'' Day');
 insert into holiday (id, version, official_date, observed_date, description) values (1229 , 0, '2022-11-24', '2022-11-24', 'Thanksgiving');
 insert into holiday (id, version, official_date, observed_date, description) values (1230 , 0, '2022-12-25', '2022-12-26', 'Christmas');
+
+insert into holiday (id, version, official_date, observed_date, description) values (1231 , 0, '2023-01-01', '2023-01-02', 'New Year''s Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1232 , 0, '2023-01-16', '2023-01-16', 'Dr. Martin Luther King, Jr. Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1233 , 0, '2023-02-20', '2023-02-20', 'Presidents'' Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1234 , 0, '2023-03-26', '2023-03-27', 'Prince Jonah Kuhio Kalanianaole Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1235 , 0, '2023-04-07', '2023-04-07', 'Good Friday');
+insert into holiday (id, version, official_date, observed_date, description) values (1236 , 0, '2023-05-29', '2023-05-29', 'Memorial Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1237 , 0, '2023-06-11', '2023-06-12', 'King Kamehameha I Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1238 , 0, '2023-07-04', '2023-07-04', 'Independence Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1239 , 0, '2023-08-18', '2023-08-18', 'Statehood Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1240 , 0, '2023-09-04', '2023-09-04', 'Labor Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1241 , 0, '2023-11-11', '2023-11-10', 'Veterans'' Day');
+insert into holiday (id, version, official_date, observed_date, description) values (1242 , 0, '2023-11-23', '2023-11-23', 'Thanksgiving');
+insert into holiday (id, version, official_date, observed_date, description) values (1243 , 0, '2023-12-25', '2023-12-25', 'Christmas');
 
 insert into holiday_type(type_id, holiday_id) values(2,1);
 insert into holiday_type(type_id, holiday_id) values(3,1);
@@ -798,33 +814,50 @@ insert into holiday_type(type_id, holiday_id) values(4, 1012);
 
 insert into holiday_type(type_id, holiday_id) values(3, 1011);
 insert into holiday_type(type_id, holiday_id) values(4, 1011);
-
 insert into holiday_type(type_id, holiday_id) values(3, 1010);
 insert into holiday_type(type_id, holiday_id) values(4, 1010);
-
 insert into holiday_type(type_id, holiday_id) values(3, 1009);
 insert into holiday_type(type_id, holiday_id) values(4, 1009);
-
 insert into holiday_type(type_id, holiday_id) values(3, 1008);
 insert into holiday_type(type_id, holiday_id) values(4, 1008);
-
 insert into holiday_type(type_id, holiday_id) values(3, 1007);
 insert into holiday_type(type_id, holiday_id) values(4, 1007);
-
 insert into holiday_type(type_id, holiday_id) values(3, 1006);
 insert into holiday_type(type_id, holiday_id) values(4, 1006);
-
 insert into holiday_type(type_id, holiday_id) values(3, 1005);
 insert into holiday_type(type_id, holiday_id) values(4, 1005);
-
 insert into holiday_type(type_id, holiday_id) values(3, 1004);
 insert into holiday_type(type_id, holiday_id) values(4, 1004);
-
 insert into holiday_type(type_id, holiday_id) values(3, 1003);
 insert into holiday_type(type_id, holiday_id) values(4, 1003);
-
 insert into holiday_type(type_id, holiday_id) values(3, 1002);
 insert into holiday_type(type_id, holiday_id) values(4, 1002);
-
 insert into holiday_type(type_id, holiday_id) values(3, 1001);
 insert into holiday_type(type_id, holiday_id) values(4, 1001);
+
+insert into holiday_type(type_id, holiday_id) values(3, 1243);
+insert into holiday_type(type_id, holiday_id) values(4, 1243);
+insert into holiday_type(type_id, holiday_id) values(3, 1242);
+insert into holiday_type(type_id, holiday_id) values(4, 1242);
+insert into holiday_type(type_id, holiday_id) values(3, 1241);
+insert into holiday_type(type_id, holiday_id) values(4, 1241);
+insert into holiday_type(type_id, holiday_id) values(3, 1240);
+insert into holiday_type(type_id, holiday_id) values(4, 1240);
+insert into holiday_type(type_id, holiday_id) values(3, 1239);
+insert into holiday_type(type_id, holiday_id) values(4, 1239);
+insert into holiday_type(type_id, holiday_id) values(3, 1238);
+insert into holiday_type(type_id, holiday_id) values(4, 1238);
+insert into holiday_type(type_id, holiday_id) values(3, 1237);
+insert into holiday_type(type_id, holiday_id) values(4, 1237);
+insert into holiday_type(type_id, holiday_id) values(3, 1236);
+insert into holiday_type(type_id, holiday_id) values(4, 1236);
+insert into holiday_type(type_id, holiday_id) values(3, 1235);
+insert into holiday_type(type_id, holiday_id) values(4, 1235);
+insert into holiday_type(type_id, holiday_id) values(3, 1234);
+insert into holiday_type(type_id, holiday_id) values(4, 1234);
+insert into holiday_type(type_id, holiday_id) values(3, 1233);
+insert into holiday_type(type_id, holiday_id) values(4, 1233);
+insert into holiday_type(type_id, holiday_id) values(3, 1232);
+insert into holiday_type(type_id, holiday_id) values(4, 1232);
+insert into holiday_type(type_id, holiday_id) values(3, 1231);
+insert into holiday_type(type_id, holiday_id) values(4, 1231);

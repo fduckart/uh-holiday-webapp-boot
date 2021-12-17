@@ -12,7 +12,7 @@ public class HomeController {
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-    @GetMapping(value = { "", "/" })
+    @GetMapping(value = { "/" })
     public String home(Locale locale) {
         logger.info("User at home. The client locale is {}.", locale);
         return "home";

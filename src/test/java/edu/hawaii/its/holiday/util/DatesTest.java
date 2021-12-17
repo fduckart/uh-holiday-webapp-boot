@@ -1,10 +1,10 @@
 package edu.hawaii.its.holiday.util;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
@@ -17,8 +17,8 @@ import java.time.Month;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class DatesTest {
 
@@ -30,7 +30,7 @@ public class DatesTest {
     protected Date dayMusicDiedDate;
     protected Date newYearsDay2000Date;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         christmasLocalDate = LocalDate.of(1962, Month.DECEMBER, 25);
         newYearsDay2000LocalDate = LocalDate.of(2000, Month.JANUARY, 1);

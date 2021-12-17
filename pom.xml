@@ -13,13 +13,10 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.6.1</version>
+        <relativePath/>
     </parent>
 
-    <prerequisites>
-        <maven>3.2.1</maven>
-    </prerequisites>
     <properties>
         <java.version>1.8</java.version>
 
@@ -80,9 +77,8 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.16</version>
         </dependency>
-        
+
         <!-- Test -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -93,8 +89,8 @@
             <artifactId>spring-security-test</artifactId>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
             <scope>test</scope>
         </dependency>
 
@@ -113,7 +109,7 @@
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
             <version>${bootstrap.version}</version>
-        </dependency>        
+        </dependency>
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>
@@ -149,7 +145,7 @@
             <groupId>org.webjars.bower</groupId>
             <artifactId>angular-mocks</artifactId>
             <version>${angular-mocks-version}</version>
-        </dependency>                
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -170,24 +166,26 @@
                 </configuration>
             </plugin>
             <plugin>
+        		<groupId>org.apache.maven.plugins</groupId>            
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
                     <execution>
+                    	<id>hints-message</id>
                         <phase>clean</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <target>
-                                <echo>Now that you have a clean project,</echo>
-                                <echo>here are some common goals for this project:</echo>
-                                <echo>$ ./mvnw clean test</echo>
-                                <echo>$ ./mvnw clean test -Dtest=*Test </echo>
-                                <echo>$ ./mvnw jasmine:test</echo>                                
-                                <echo>$ ./mvnw clean package</echo>
-                                <echo>$ ./mvnw -Dmaven.test.skip=true clean package</echo>
-                                <echo>$ ./mvnw clean test jacoco:report</echo>
-                                <echo>$ ./mvnw clean spring-boot:run</echo>
+                            <target unless="maven.test.skip">
+                                <echo level="info" message="Now that you have a clean project,"/>
+                                <echo level="info" message="here are some common goals for this project:"/>
+                                <echo level="info" message="$ ./mvnw clean test"/>
+                                <echo level="info" message="$ ./mvnw clean test -Dtest=*Test "/>
+                                <echo level="info" message="$ ./mvnw jasmine:test"/>
+                                <echo level="info" message="$ ./mvnw clean package"/>
+                                <echo level="info" message="$ ./mvnw -Dmaven.test.skip=true clean package"/>
+                                <echo level="info" message="$ ./mvnw clean test jacoco:report"/>
+                                <echo level="info" message="$ ./mvnw clean spring-boot:run"/>
                             </target>
                         </configuration>
                     </execution>
@@ -205,7 +203,7 @@
                 <configuration>
                     <excludes>
                         <exclude>**/configuration/SpringBootWebApplication.class</exclude>
-                        <exclude>**/configuration/AppConfig.class</exclude>                        
+                        <exclude>**/configuration/AppConfig.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -237,15 +235,15 @@
                         <source>${basedir}/src/main/resources/static/javascript/holiday.service.js</source>
                         <source>${basedir}/src/main/resources/static/javascript/holiday.controller.js</source>
                     </preloadSources>
-                    <!--  
+                    <!--
                     <jsTestSrcDir>${basedir}/src/test/resources/javascript</jsTestSrcDir>
                     -->
                     <specIncludes>
-                        <include>**/holiday.controller.holiday.test.js</include>                       
+                        <include>**/holiday.controller.holiday.test.js</include>
                     </specIncludes>
                 </configuration>
             </plugin>
-            
+
         </plugins>
     </build>
 </project>
