@@ -15,23 +15,20 @@ jobs:
       with:
         java-version: 1.8
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-
     - name: Run Coverage
-      run: ./gradlew testCoverage
+      run: mvn -q clean test jacoco:report -D'logging.level.edu.hawaii.its.holiday=OFF' -D'logging.level.org.springframework=ERROR' -D'spring.main.banner-mode=off'
 
     - name: Upload Report
       uses: 'actions/upload-artifact@v2'
       with:
         name: report.xml
-        path: ${{ github.workspace }}/build/reports/jacoco/testCoverage/testCoverage.xml
+        path: ${{ github.workspace }}/target/site/jacoco/jacoco.xml
 
     - name: Jacoco Report to PR
       id: jacoco
       uses: madrapps/jacoco-report@v1.1
       with:
-        path: ${{ github.workspace }}/build/reports/jacoco/testCoverage/testCoverage.xml
+        path: ${{ github.workspace }}/target/site/jacoco/jacoco.xml
         token: ${{ secrets.GITHUB_TOKEN }}
         min-coverage-overall: 40
         min-coverage-changed-files: 60
