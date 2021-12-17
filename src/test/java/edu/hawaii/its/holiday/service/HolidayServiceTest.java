@@ -51,7 +51,6 @@ import edu.hawaii.its.holiday.type.HolidayAdjuster;
 import edu.hawaii.its.holiday.type.Type;
 import edu.hawaii.its.holiday.type.UserRole;
 import edu.hawaii.its.holiday.util.Dates;
-import edu.hawaii.its.holiday.util.Strings;
 
 @SpringBootTest(classes = { SpringBootWebApplication.class })
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
@@ -484,11 +483,6 @@ public class HolidayServiceTest {
     @Test
     public void findAllDescriptions() {
         List<String> descriptions = holidayService.findAllDescriptions();
-        System.out.println(Strings.fill('v', 99));
-        for (String s : descriptions) {
-            System.out.println(" ::: " + s);
-        }
-        System.out.println(Strings.fill('^', 99));
 
         assertThat(descriptions.get(0), equalTo("Christmas"));
         assertThat(descriptions.get(1), equalTo("Discoverers' Day")); // Not a State holiday!
