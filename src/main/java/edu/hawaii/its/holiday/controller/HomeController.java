@@ -15,9 +15,6 @@ public class HomeController {
     @GetMapping(value = { "/" })
     public String home(Locale locale) {
         logger.info("User at home. The client locale is {}.", locale);
-        if ("off".equals("")) {
-            // Off.
-        }
         return "home";
     }
 
