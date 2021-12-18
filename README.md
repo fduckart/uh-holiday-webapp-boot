@@ -4,6 +4,10 @@ A web application to display holidays used by UH.
 [![Coverage Status](https://coveralls.io/repos/github/fduckart/uh-holiday-webapp-boot/badge.svg)](https://coveralls.io/github/fduckart/uh-holiday-webapp-boot)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/d68ffad24e34410a9186edd61494a749)](https://www.codacy.com/app/fduckart/uh-holiday-webapp-boot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fduckart/uh-holiday-webapp-boot&amp;utm_campaign=Badge_Grade)
 
+[![coverage](../badges/jacoco.svg)](https://github.com/fduckart/uh-holiday-webapp-boot/actions/workflows/build.yml)
+[![branch coverage](../badges/branches.svg)](https://github.com/fduckart/uh-holiday-webapp-boot/actions/workflows/build.yml)
+
+
 ##### Java
 You'll need a Java JDK to build and run the project (version 1.8).
 If necessary, be sure to set your JAVA_HOME environment variable.
