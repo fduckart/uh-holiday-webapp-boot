@@ -38,7 +38,7 @@ jobs:
 
     - name: Log coverage percentage
       run: |
-        echo "Coverage = ${{ steps.jacoco.outputs.coverage }}"
+        echo "coverage = ${{ steps.jacoco.outputs.coverage }}"
 
     - name: Commit and push
       if: ${{ github.event_name != 'pull_request' }}
