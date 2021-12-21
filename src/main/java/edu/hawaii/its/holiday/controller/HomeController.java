@@ -24,9 +24,6 @@ public class HomeController {
     @GetMapping(value = "/contact")
     public String contact() {
         logger.info("User at contact.");
-        if ("off".equals("")) {
-            return "contact";
-        }
         return "contact";
     }
 

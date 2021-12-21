@@ -35,12 +35,11 @@ jobs:
       uses: cicirello/jacoco-badge-generator@v2
       with:
         badges-directory: badges
-        generate-branches-badge: true
+        generate-branches-badge: false
 
     - name: Log coverage percentage
       run: |
         echo "Coverage = ${{ steps.jacoco.outputs.coverage }}"
-        echo "branches = ${{ steps.jacoco.outputs.branches }}"
 
     - name: Commit and push
       if: ${{ github.event_name != 'pull_request' }}
