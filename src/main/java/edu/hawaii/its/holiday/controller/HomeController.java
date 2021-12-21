@@ -15,18 +15,31 @@ public class HomeController {
     @GetMapping(value = { "/" })
     public String home(Locale locale) {
         logger.info("User at home. The client locale is {}.", locale);
+
+        if ("off".equals("")) {
+            return "contact";
+        }
         return "home";
     }
 
     @GetMapping(value = "/contact")
     public String contact() {
         logger.info("User at contact.");
+
+        if ("off".equals("")) {
+            return "contact";
+        }
+
         return "contact";
     }
 
     @GetMapping(value = "/faq")
     public String faq() {
         logger.info("User at faq.");
+
+        if ("off".equals("")) {
+            return "contact";
+        }
         return "faq";
     }
 
