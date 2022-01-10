@@ -12,16 +12,16 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.util.Assert;
 
-@Profile(value = { "default", "dev" })
+@Profile(value = { "default" })
 @Configuration
 @ComponentScan(basePackages = "edu.hawaii.its.holiday")
 @EntityScan(basePackages = { "edu.hawaii.its.holiday.type" })
 @PropertySource(value = { "classpath:custom.properties" })
-public class AppConfigDev {
+public class AppConfigDefault {
 
-    private static final Log logger = LogFactory.getLog(AppConfigDev.class);
+    private static final Log logger = LogFactory.getLog(AppConfigDefault.class);
 
-    @Value("${spring.datasource.initialize}")
+    @Value("${spring.jpa.defer-datasource-initialization}")
     private boolean springDatasourceInitialize;
 
     @PostConstruct
