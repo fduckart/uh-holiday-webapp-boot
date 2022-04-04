@@ -1,5 +1,7 @@
 package edu.hawaii.its.holiday.controller;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -11,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.context.WebApplicationContext;
 
 import edu.hawaii.its.holiday.configuration.SpringBootWebApplication;
@@ -45,9 +48,13 @@ public class HomeControllerTest {
 
     @Test
     public void requestContact() throws Exception {
-        mockMvc.perform(get("/contact"))
+        MvcResult mvcResult = mockMvc.perform(get("/contact"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("contact"));
+                .andExpect(view().name("contact"))
+                .andReturn();
+
+        String viewName = mvcResult.getModelAndView().getViewName();
+        assertThat(viewName, equalTo("contact"));
     }
 
     @Test
