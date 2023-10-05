@@ -54,6 +54,9 @@ public class Holiday implements Serializable {
     @JsonSerialize(using = HolidayDateSerializer.class)
     private LocalDate officialDate;
 
+    @Column(name = "official_year", nullable = false)
+    private Integer officialYear;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "holiday_type",
             joinColumns = @JoinColumn(name = "holiday_id", unique = false),
@@ -77,7 +80,9 @@ public class Holiday implements Serializable {
         this.observedDate = observedDate;
     }
 
-    public boolean isClosest() { return closest;}
+    public boolean isClosest() {
+        return closest;
+    }
 
     public void setClosest(boolean closest) {
         this.closest = closest;
@@ -166,6 +171,11 @@ public class Holiday implements Serializable {
         return null;
     }
 
+    @Transient
+    public void addType(Type type) {
+        this.types.add(type);
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -176,7 +186,6 @@ public class Holiday implements Serializable {
         result = prime * result + ((officialDate == null) ? 0 : officialDate.hashCode());
         return result;
     }
-
 
     @Override
     public boolean equals(Object obj) {

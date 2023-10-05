@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "type")
 public class Type implements Serializable {
@@ -22,6 +24,10 @@ public class Type implements Serializable {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "sort_id")
+    @JsonIgnore
+    private Integer sortId;
 
     public Integer getId() {
         return id;
@@ -45,6 +51,10 @@ public class Type implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getSortId() {
+        return sortId;
     }
 
     @Override

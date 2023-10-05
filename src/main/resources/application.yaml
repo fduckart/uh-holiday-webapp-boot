@@ -79,4 +79,31 @@ app:
         base: https://www.test.hawaii.edu/holiday
 
 
+---
+environment: test
+spring:
+    config:
+        activate:
+            on-profile: test
+    main:
+        allow-bean-definition-overriding: true
+
+app:
+    url:
+        base: https://www.test.hawaii.edu/holiday
+
+---
+environment: test
+spring:
+    config:
+        activate:
+            on-profile: test
+    main:
+        allow-bean-definition-overriding: true
+
+app:
+    url:
+        base: https://www.test.hawaii.edu/holiday
+
 ...
+
