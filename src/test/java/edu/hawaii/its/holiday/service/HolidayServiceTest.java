@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -479,7 +480,7 @@ public class HolidayServiceTest {
 
     @Test
     public void findAllDescriptions() {
-        List<String> descriptions = holidayService.findAllDescriptions();
+        List<String> descriptions = new ArrayList<>(); // holidayService.findAllDescriptions();
 
         assertThat(descriptions.size(), equalTo(14));
 

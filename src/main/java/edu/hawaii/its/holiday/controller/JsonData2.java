@@ -1,25 +1,28 @@
 package edu.hawaii.its.holiday.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class JsonData<E> implements Serializable {
+import edu.hawaii.its.holiday.type.Holiday;
+
+public class JsonData2 implements Serializable {
 
     private static final long serialVersionUID = 53L;
 
     private String key;
-    private E data;
+    private List<Holiday> data;
 
-    public JsonData(String key, E data) {
+    public JsonData2(String key, List<Holiday> data) {
         this.key = key;
         this.data = data;
     }
 
     @JsonCreator
-    public JsonData(@JsonProperty("data") E data) {
+    public JsonData2(@JsonProperty("data") List<Holiday> data) {
         this("data", data);
     }
 
@@ -28,7 +31,7 @@ public class JsonData<E> implements Serializable {
         return key;
     }
 
-    public E getData() {
+    public List<Holiday> getData() {
         return data;
     }
 
@@ -52,7 +55,7 @@ public class JsonData<E> implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        JsonData<?> other = (JsonData<?>) obj;
+        JsonData2 other = (JsonData2) obj;
         if (data == null) {
             if (other.data != null) {
                 return false;
@@ -73,7 +76,7 @@ public class JsonData<E> implements Serializable {
 
     @Override
     public String toString() {
-        return "JsonData [key=" + key + ", data=" + data + "]";
+        return "JsonData2 [key=" + key + ", data=" + data + "]";
     }
 
 }
