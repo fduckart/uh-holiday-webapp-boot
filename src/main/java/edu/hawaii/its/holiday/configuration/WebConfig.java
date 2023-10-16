@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.format.FormatterRegistry;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -31,10 +30,10 @@ public class WebConfig implements WebMvcConfigurer {
         logger.info("AppConfig init");
     }
 
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(new StringToJsonDataConverter());
-    }
+    //@Override
+    // public void addFormatters(FormatterRegistry registry) {
+    // registry.addConverter(new StringToJsonDataConverter());
+    //}
 
     @Bean
     public RestTemplate restTemplate() {

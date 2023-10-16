@@ -1,21 +1,32 @@
 package edu.hawaii.its.holiday.service;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import reactor.core.publisher.Mono;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.hawaii.its.holiday.controller.JsonData;
 import edu.hawaii.its.holiday.controller.JsonData2;
@@ -33,6 +44,8 @@ import edu.hawaii.its.holiday.util.Strings;
 @Service
 public class HolidayService {
 
+    private static final Log logger = LogFactory.getLog(HolidayService.class);
+
     private final RestTemplate restTemplate;
 
     @Autowired
@@ -48,68 +61,146 @@ public class HolidayService {
     private UserRoleRepository userRoleRepository;
 
     // Constructor.
-    public HolidayService(@Autowired RestTemplate restTemplate) {
+    public HolidayService(@Autowired RestTemplate restTemplate) throws JsonProcessingException {
         this.restTemplate = restTemplate;
         System.out.println(">>>>> restTemplate: " + restTemplate);
 
-        final String url = "https://www.hawaii.edu/its/cloud/holiday/holidayapi/api/holidays";
+        ///final String url = "https://www.hawaii.edu/its/cloud/holiday/holidayapi/api/holidays";
+        // final String url = "https://www.hawaii.edu/its/ws/holiday/api/holidays";
+        final String typesUrl = "https://www.test.hawaii.edu/its/ws/holiday/api/types";
+        // final String githubUrl = "https://api.github.com/users/duckart";
+
         System.out.println(Strings.fill('A', 99));
-        // Holiday[] holidays = restTemplate.getForObject(url, Holiday[].class);
+        // Holiday[] response0 = restTemplate.getForObject(url, Holiday[].class);
+        //
+        // for (Holiday h : response0) {
+        //     System.out.println("  -a-> " + h.toString());
+        //     // System.out.println("  -b-> " + asObject(h.toString(), Holiday.class));
+        // }
+
+        // ResponseEntity<Object> response
+        //         = restTemplate.getForEntity(url, Object.class);
+
+        // ResponseEntity<Object> response
+        //         = restTemplate.getForEntity(url, Object.class);
+
+        // JsonData response
+        //         = restTemplate.getForObject(url, JsonData.class);
+
+        ResponseEntity<String> responses
+                = restTemplate.getForEntity(typesUrl, String.class);
+        assertThat(responses.getStatusCode(), equalTo(HttpStatus.OK));
+        System.out.println("TYPESa  : " + responses);
+
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode root = mapper.readTree(responses.getBody());
+        JsonNode name = root.path("data");
+        System.out.println("NAMEaa: " + name);
 
         // ResponseEntity<JsonData> response
-        //         = restTemplate.getForEntity(url, JsonData.class);
 
-        JsonData response
-                = restTemplate.getForObject(url, JsonData.class);
+        ResponseEntity<JsonData> response
+                = restTemplate.getForEntity(typesUrl, JsonData.class);
+
+        List<Type> types = (List<Type>) response.getBody().getData();
+        System.out.println(Strings.fill('s', 44));
+        System.out.println("class type data: " + ((List<?>) response.getBody().getData()).get(0));
+        System.out.println(">>>>> types: " + types);
+        System.out.println(Strings.fill('t', 44));
+
         // JsonData<List<Holiday>> data = new JsonData<>(holidays);
         //
-        // JsonData<List<Holiday>> data = response.getBody();
-        System.out.println(response.getData().getClass());
-        // List<Object> objects = (List<Object>) response.getBody().getData();
-        //
-        // for (Object h : objects) {
-        //     System.out.println("  >>>> " + h);
-        // }
+        ///JsonData<List<Holiday>> data = response.getBody();
+        // System.out.println(response.getBody().getData().getClass());
+        System.out.println("RESPONSE: " + response.getBody().getData());
+        List<Object> objects = (List<Object>) response.getBody().getData();
+
+        for (Object h : objects) {
+            System.out.println("  -a-> " + h.toString());
+            // System.out.println("  -b-> " + asObject(h.toString(), Object.class));
+        }
+
+        if ("off".equals("")) {
+            Type[] typesx = restTemplate.getForObject(typesUrl, Type[].class);
+            System.out.println("TYPES   : " + typesx);
+        }
+
+        // String s = "{\"description\":Christmas, \"officialYear\":2028, \"types\":[{id:2, version:1, description:Federal}, {id:3, version:1, description:UH}, {id:4, version:1, description:State}], closest:false, holidayTypes:[Federal, UH, State], year:2028, observedDateFull:December 25, 2028, Monday, officialDateFull:December 25, 2028, Monday, observedDate:2028-12-25, \"officialDate:2028-12-25}";
+        String s = "{\"description\":\"Christmas\", \"officialYear\":2028}"; // works
+        System.out.println("  -b-> " + asObject(s, Holiday.class));
+
         // System.out.println(" >>> " + response.getBody().getData().getClass());
         System.out.println(Strings.fill('B', 99));
 
-        WebClient client = WebClient.create();
+        // String userJson = restTemplate.getForObject(url, String.class);
+        // System.out.println("  <><>   userJson: " + userJson);
+        // ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
 
-        WebClient.ResponseSpec responseSpec = client.get()
-                .uri(url)
-                .retrieve();
-        System.out.println("  <><><> responseSpec: " + responseSpec);
+        System.out.println(Strings.fill('B', 99));
+        // mapper = new ObjectMapper();
+        // JsonNode root = mapper.readTree(responseEntity.getBody());
+        // System.out.println("  <><>     root: " + root);
+        // List<JsonNode> nodes = root.findValues("data");
+        // System.out.println("  <><>    nodes: " + nodes.size());
+        // System.out.println("  <><>    nodes: " + nodes);
 
-        String responseBody = responseSpec.bodyToMono(String.class).block();
-        System.out.println("  <><><> responseBody: " + responseBody.length());
         System.out.println(Strings.fill('C', 99));
 
-        Mono<JsonData> jsonData = client.get()
-                .uri(url)
-                .retrieve()
-                .bodyToMono(JsonData.class);
+        if ("off".equals("")) {
+            String url = null;
 
-        List<Object> holidays = (List<Object>) jsonData.block().getData();
-        for (Object h : holidays) {
-            System.out.println("  ---> " + h);
+            WebClient client = WebClient.create();
+
+            WebClient.ResponseSpec responseSpec = client.get()
+                    .uri(url)
+                    .retrieve();
+            System.out.println("  <><><> responseSpec: " + responseSpec);
+
+            String responseBody = responseSpec.bodyToMono(String.class).block();
+            System.out.println("  <><><> responseBody: " + responseBody.length());
+            System.out.println(Strings.fill('C', 99));
+
+            Mono<JsonData> jsonData = client.get()
+                    .uri(url)
+                    .retrieve()
+                    .bodyToMono(JsonData.class);
+
+            List<Object> holidays = (List<Object>) jsonData.block().getData();
+            for (Object h : holidays) {
+                System.out.println("  -a-> " + h.toString());
+                System.out.println("  -b-> " + asObject(h.toString(), Holiday.class));
+            }
+
+            System.out.println(Strings.fill('D', 99));
+
+            Mono<JsonData2> jsonData2 = client.get()
+                    .uri(url)
+                    .retrieve()
+                    .bodyToMono(JsonData2.class);
+
+            // System.out.println(" >>>>>>> " + jsonData2.block());
+
+            // Mono<JsonData> mono = responseSpec.bodyToMono(JsonData.class);
+
+            // System.out.println("  <><><>    JsonData: " + jsonData.block().getData().getClass());
+            List<Holiday> holidays2 = jsonData2.block().getData();
+            for (Object h : holidays2) {
+                System.out.println("  ---> " + h);
+            }
+
+            System.out.println(Strings.fill('E', 99));
         }
+    }
 
-        System.out.println(Strings.fill('D', 99));
-
-        Mono<JsonData2> jsonData2 = client.get()
-                .uri(url)
-                .retrieve()
-                .bodyToMono(JsonData2.class);
-
-        // Mono<JsonData> mono = responseSpec.bodyToMono(JsonData.class);
-
-        // System.out.println("  <><><>    JsonData: " + jsonData.block().getData().getClass());
-        List<Holiday> holidays2 = jsonData2.block().getData();
-        for (Object h : holidays2) {
-            System.out.println("  ---> " + h);
+    private <T> T asObject(final String json, Class<T> type) {
+        T result = null;
+        try {
+            result = new ObjectMapper().readValue(json, type);
+        } catch (Exception e) {
+            logger.error("Error: " + e);
+            // Maybe we should throw something?
         }
-
-        System.out.println(Strings.fill('E', 99));
+        return result;
     }
 
     @Transactional(readOnly = true)
