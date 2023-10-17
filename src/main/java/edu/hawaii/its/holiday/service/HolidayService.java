@@ -5,7 +5,6 @@ import static org.hamcrest.Matchers.equalTo;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -126,68 +125,31 @@ public class HolidayService {
 
         System.out.println(Strings.fill('x', 44));
 
-        if ("off".equals("")) {
-            // JsonData<List<Holiday>> data = new JsonData<>(holidays);
-            //
-            ///JsonData<List<Holiday>> data = response.getBody();
-            // System.out.println(response.getBody().getData().getClass());
-            // System.out.println("RESPONSE: " + response.getBody().getData());
-            List<Object> objects = new ArrayList<>(); // List<Object>) response.getBody().getData();
+        System.out.println(Strings.fill('B', 99));
 
-            for (Object h : objects) {
-                System.out.println("  -a-> " + h.toString());
-                // System.out.println("  -b-> " + asObject(h.toString(), Object.class));
-            }
+        WebClient client = WebClient.create();
+        Mono<List<Type>> jsonData = client.get()
+                .uri(typesV2Url)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<Type>>() {
+                });
+
+        System.out.println("### HELL YA  : " + hResponse);
+        tts = jsonData.block().stream().collect(Collectors.toList());
+        for (Type t : tts) {
+            System.out.println("### TYPE (v1): " + t);
         }
 
-        // String s = "{\"description\":Christmas, \"officialYear\":2028, \"types\":[{id:2, version:1, description:Federal}, {id:3, version:1, description:UH}, {id:4, version:1, description:State}], closest:false, holidayTypes:[Federal, UH, State], year:2028, observedDateFull:December 25, 2028, Monday, officialDateFull:December 25, 2028, Monday, observedDate:2028-12-25, \"officialDate:2028-12-25}";
-        String s = "{\"description\":\"Christmas\", \"officialYear\":2028}"; // works
-        System.out.println("  -b-> " + asObject(s, Holiday.class));
+        // List<Object> holidays = (List<Object>) jsonData.block().getData();
+        // for (Object h : holidays) {
+        //     System.out.println("  -a-> " + h.toString());
+        //     System.out.println("  -b-> " + asObject(h.toString(), Holiday.class));
+        // }
 
-        // System.out.println(" >>> " + response.getBody().getData().getClass());
-        System.out.println(Strings.fill('B', 99));
-
-        // String userJson = restTemplate.getForObject(url, String.class);
-        // System.out.println("  <><>   userJson: " + userJson);
-        // ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
-
-        System.out.println(Strings.fill('B', 99));
-        // mapper = new ObjectMapper();
-        // JsonNode root = mapper.readTree(responseEntity.getBody());
-        // System.out.println("  <><>     root: " + root);
-        // List<JsonNode> nodes = root.findValues("data");
-        // System.out.println("  <><>    nodes: " + nodes.size());
-        // System.out.println("  <><>    nodes: " + nodes);
-
-        System.out.println(Strings.fill('C', 99));
+        System.out.println(Strings.fill('D', 99));
 
         if ("off".equals("")) {
             String url = null;
-
-            WebClient client = WebClient.create();
-
-            WebClient.ResponseSpec responseSpec = client.get()
-                    .uri(url)
-                    .retrieve();
-            System.out.println("  <><><> responseSpec: " + responseSpec);
-
-            String responseBody = responseSpec.bodyToMono(String.class).block();
-            System.out.println("  <><><> responseBody: " + responseBody.length());
-            System.out.println(Strings.fill('C', 99));
-
-            Mono<JsonData> jsonData = client.get()
-                    .uri(url)
-                    .retrieve()
-                    .bodyToMono(JsonData.class);
-
-            List<Object> holidays = (List<Object>) jsonData.block().getData();
-            for (Object h : holidays) {
-                System.out.println("  -a-> " + h.toString());
-                System.out.println("  -b-> " + asObject(h.toString(), Holiday.class));
-            }
-
-            System.out.println(Strings.fill('D', 99));
-
             Mono<JsonData2> jsonData2 = client.get()
                     .uri(url)
                     .retrieve()
