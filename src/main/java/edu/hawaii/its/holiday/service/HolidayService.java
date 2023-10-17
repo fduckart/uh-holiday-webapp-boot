@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -67,28 +70,13 @@ public class HolidayService {
 
         ///final String url = "https://www.hawaii.edu/its/cloud/holiday/holidayapi/api/holidays";
         // final String url = "https://www.hawaii.edu/its/ws/holiday/api/holidays";
-        final String typesUrl = "https://www.test.hawaii.edu/its/ws/holiday/api/types";
+        final String typesV1Url = "https://www.test.hawaii.edu/its/ws/holiday/api/types";
+        final String typesV2Url = "https://www.test.hawaii.edu/its/cloud/holiday/main/holidayapi/api/v2/types";
         // final String githubUrl = "https://api.github.com/users/duckart";
 
         System.out.println(Strings.fill('A', 99));
-        // Holiday[] response0 = restTemplate.getForObject(url, Holiday[].class);
-        //
-        // for (Holiday h : response0) {
-        //     System.out.println("  -a-> " + h.toString());
-        //     // System.out.println("  -b-> " + asObject(h.toString(), Holiday.class));
-        // }
-
-        // ResponseEntity<Object> response
-        //         = restTemplate.getForEntity(url, Object.class);
-
-        // ResponseEntity<Object> response
-        //         = restTemplate.getForEntity(url, Object.class);
-
-        // JsonData response
-        //         = restTemplate.getForObject(url, JsonData.class);
-
         ResponseEntity<String> responses
-                = restTemplate.getForEntity(typesUrl, String.class);
+                = restTemplate.getForEntity(typesV2Url, String.class);
         assertThat(responses.getStatusCode(), equalTo(HttpStatus.OK));
         System.out.println("TYPESa  : " + responses);
 
@@ -99,30 +87,57 @@ public class HolidayService {
 
         // ResponseEntity<JsonData> response
 
-        ResponseEntity<JsonData> response
-                = restTemplate.getForEntity(typesUrl, JsonData.class);
+        // ResponseEntity<List<Type>> response
+        //         = restTemplate.getForObject(typesUrl, Object.class);
 
-        List<Type> types = (List<Type>) response.getBody().getData();
+        ResponseEntity<List<Type>> response = restTemplate
+                .exchange(typesV2Url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Type>>() {
+                });
+
         System.out.println(Strings.fill('s', 44));
-        System.out.println("class type data: " + ((List<?>) response.getBody().getData()).get(0));
-        System.out.println(">>>>> types: " + types);
+        System.out.println("class type data: " + response);
+        System.out.println(".........................");
+        System.out.println("class type data: " + response.getBody().getClass());
         System.out.println(Strings.fill('t', 44));
-
-        // JsonData<List<Holiday>> data = new JsonData<>(holidays);
-        //
-        ///JsonData<List<Holiday>> data = response.getBody();
-        // System.out.println(response.getBody().getData().getClass());
-        System.out.println("RESPONSE: " + response.getBody().getData());
-        List<Object> objects = (List<Object>) response.getBody().getData();
-
-        for (Object h : objects) {
-            System.out.println("  -a-> " + h.toString());
-            // System.out.println("  -b-> " + asObject(h.toString(), Object.class));
+        List<Type> tts = response.getBody().stream().collect(Collectors.toList());
+        for (Type t : tts) {
+            System.out.println("### TYPE (v2): " + t);
         }
 
+        System.out.println(Strings.fill('v', 44));
+
+        ResponseEntity<JsonData<List<Type>>> hResponse = restTemplate
+                .exchange(typesV1Url, HttpMethod.GET, null, new ParameterizedTypeReference<JsonData<List<Type>>>() {
+                });
+
+        System.out.println("### SUPER WOW: " + hResponse);
+        tts = hResponse.getBody().getData().stream().collect(Collectors.toList());
+        for (Type t : tts) {
+            System.out.println("### TYPE (v1): " + t);
+        }
+
+        System.out.println(Strings.fill('w', 44));
+
+        System.out.println("### GODDAMN  : " + hResponse);
+        tts = hResponse.getBody().getData();
+        for (Type t : tts) {
+            System.out.println("### TYPE (v1): " + t);
+        }
+
+        System.out.println(Strings.fill('x', 44));
+
         if ("off".equals("")) {
-            Type[] typesx = restTemplate.getForObject(typesUrl, Type[].class);
-            System.out.println("TYPES   : " + typesx);
+            // JsonData<List<Holiday>> data = new JsonData<>(holidays);
+            //
+            ///JsonData<List<Holiday>> data = response.getBody();
+            // System.out.println(response.getBody().getData().getClass());
+            // System.out.println("RESPONSE: " + response.getBody().getData());
+            List<Object> objects = new ArrayList<>(); // List<Object>) response.getBody().getData();
+
+            for (Object h : objects) {
+                System.out.println("  -a-> " + h.toString());
+                // System.out.println("  -b-> " + asObject(h.toString(), Object.class));
+            }
         }
 
         // String s = "{\"description\":Christmas, \"officialYear\":2028, \"types\":[{id:2, version:1, description:Federal}, {id:3, version:1, description:UH}, {id:4, version:1, description:State}], closest:false, holidayTypes:[Federal, UH, State], year:2028, observedDateFull:December 25, 2028, Monday, officialDateFull:December 25, 2028, Monday, observedDate:2028-12-25, \"officialDate:2028-12-25}";
