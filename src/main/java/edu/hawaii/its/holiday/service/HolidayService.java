@@ -31,7 +31,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.hawaii.its.holiday.controller.JsonData;
-import edu.hawaii.its.holiday.controller.JsonData2;
 import edu.hawaii.its.holiday.repository.DesignationRepository;
 import edu.hawaii.its.holiday.repository.HolidayRepository;
 import edu.hawaii.its.holiday.repository.TypeRepository;
@@ -47,6 +46,8 @@ import edu.hawaii.its.holiday.util.Strings;
 public class HolidayService {
 
     private static final Log logger = LogFactory.getLog(HolidayService.class);
+
+    private static final String holidayV2Url = "https://www.test.hawaii.edu/its/cloud/holiday/main/holidayapi/api/v2/holidays";
 
     private final RestTemplate restTemplate;
 
@@ -67,7 +68,7 @@ public class HolidayService {
         this.restTemplate = restTemplate;
         System.out.println(">>>>> restTemplate: " + restTemplate);
 
-        ///final String url = "https://www.hawaii.edu/its/cloud/holiday/holidayapi/api/holidays";
+        // final String holidayV2Url = "https://www.hawaii.edu/its/cloud/holiday/holidayapi/api/holidays";
         // final String url = "https://www.hawaii.edu/its/ws/holiday/api/holidays";
         final String typesV1Url = "https://www.test.hawaii.edu/its/ws/holiday/api/types";
         final String typesV2Url = "https://www.test.hawaii.edu/its/cloud/holiday/main/holidayapi/api/v2/types";
@@ -140,33 +141,21 @@ public class HolidayService {
             System.out.println("### TYPE (v1): " + t);
         }
 
-        // List<Object> holidays = (List<Object>) jsonData.block().getData();
-        // for (Object h : holidays) {
-        //     System.out.println("  -a-> " + h.toString());
-        //     System.out.println("  -b-> " + asObject(h.toString(), Holiday.class));
-        // }
-
         System.out.println(Strings.fill('D', 99));
 
-        if ("off".equals("")) {
-            String url = null;
-            Mono<JsonData2> jsonData2 = client.get()
-                    .uri(url)
-                    .retrieve()
-                    .bodyToMono(JsonData2.class);
+        client = WebClient.create();
+        Mono<List<Holiday>> jsonDataHoliday = client.get()
+                .uri(holidayV2Url)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<Holiday>>() {
+                });
 
-            // System.out.println(" >>>>>>> " + jsonData2.block());
-
-            // Mono<JsonData> mono = responseSpec.bodyToMono(JsonData.class);
-
-            // System.out.println("  <><><>    JsonData: " + jsonData.block().getData().getClass());
-            List<Holiday> holidays2 = jsonData2.block().getData();
-            for (Object h : holidays2) {
-                System.out.println("  ---> " + h);
-            }
-
-            System.out.println(Strings.fill('E', 99));
+        List<Holiday> holidays2 = jsonDataHoliday.block().stream().collect(Collectors.toList());
+        for (Object h : holidays2) {
+            System.out.println("  ---> " + h);
         }
+
+        System.out.println(Strings.fill('E', 99));
     }
 
     private <T> T asObject(final String json, Class<T> type) {

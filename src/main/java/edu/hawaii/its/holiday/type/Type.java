@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -28,6 +29,17 @@ public class Type implements Serializable {
     @Column(name = "sort_id")
     @JsonIgnore
     private Integer sortId;
+
+    // Constructor.
+    public Type() {
+        // Empty.
+    }
+
+    // Constructor.
+    @JsonCreator(mode = JsonCreator.Mode.DEFAULT)
+    public Type(String description) {
+        this.description = description;
+    }
 
     public Integer getId() {
         return id;

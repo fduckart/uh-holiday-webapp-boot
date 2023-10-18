@@ -75,8 +75,8 @@ public class Holiday implements Serializable {
     }
 
     // Constructor.
-    public Holiday(@JsonProperty("officialDate") LocalDate officialDate,
-                   @JsonProperty("observedDate") LocalDate observedDate) {
+    public Holiday(@JsonProperty("officialDateFull") LocalDate officialDate,
+                   @JsonProperty("observedDateFull") LocalDate observedDate) {
         this();
         this.officialDate = officialDate;
         this.observedDate = observedDate;
@@ -114,7 +114,6 @@ public class Holiday implements Serializable {
         this.description = description;
     }
 
-    // @JsonGetter("observedDateFull")
     public LocalDate getObservedDate() {
         return observedDate;
     }
@@ -123,7 +122,24 @@ public class Holiday implements Serializable {
         this.observedDate = observedDate;
     }
 
-    // @JsonGetter("officialDateFull")
+    @JsonGetter("observedDateFull")
+    public LocalDate getObservedDateFull() {
+        return observedDate;
+    }
+
+    public void setObservedDateFull(LocalDate observedDate) {
+        this.observedDate = observedDate;
+    }
+
+    @JsonGetter("officialDateFull")
+    public LocalDate getOfficialDateFull() {
+        return officialDate;
+    }
+
+    public void setOfficialDateFull(LocalDate officialDate) {
+        this.officialDate = officialDate;
+    }
+
     public LocalDate getOfficialDate() {
         return officialDate;
     }

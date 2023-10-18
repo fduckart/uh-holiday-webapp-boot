@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
@@ -25,8 +24,7 @@ public class HolidayDateSerializer extends StdSerializer<LocalDate> {
     }
 
     @Override
-    public void serialize(LocalDate date, JsonGenerator gen, SerializerProvider arg2)
-            throws IOException, JsonProcessingException {
+    public void serialize(LocalDate date, JsonGenerator gen, SerializerProvider sp) throws IOException {
         gen.writeString(date.format(format)); // Do we need a null check?
     }
 }
