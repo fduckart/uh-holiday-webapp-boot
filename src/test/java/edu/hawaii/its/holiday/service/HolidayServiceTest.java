@@ -35,29 +35,111 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.TimeZone;
+import java.util.stream.Collectors;
 
+import reactor.core.publisher.Mono;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.hawaii.its.holiday.configuration.SpringBootWebApplication;
+import edu.hawaii.its.holiday.controller.JsonData;
 import edu.hawaii.its.holiday.type.Designation;
 import edu.hawaii.its.holiday.type.Holiday;
 import edu.hawaii.its.holiday.type.HolidayAdjuster;
 import edu.hawaii.its.holiday.type.Type;
 import edu.hawaii.its.holiday.type.UserRole;
 import edu.hawaii.its.holiday.util.Dates;
+import edu.hawaii.its.holiday.util.Strings;
 
 @SpringBootTest(classes = { SpringBootWebApplication.class })
 @DirtiesContext(classMode = ClassMode.BEFORE_CLASS)
 public class HolidayServiceTest {
 
+    // ---------------------------
+    private static final String holidayV2Url = "https://www.test.hawaii.edu/its/cloud/holiday/main/holidayapi/api/v2/holidays";
+    private static final String holidayV1UrlItem = "https://www.test.hawaii.edu/its/cloud/holiday/main/holidayapi/api/holidays/1001/";
+    private static final String holidayV2UrlItem = "https://www.test.hawaii.edu/its/cloud/holiday/main/holidayapi/api/v2/holidays/1001/";
+    private static final String typesV1Url = "https://www.test.hawaii.edu/its/ws/holiday/api/types";
+    private static final String typesV2Url = "https://www.test.hawaii.edu/its/cloud/holiday/main/holidayapi/api/v2/types";
+
+    @Autowired
+    private RestTemplate restTemplate;
+    // ---------------------------
+
     @Autowired
     private HolidayService holidayService;
+
+    @Test
+    public void testme() {
+        System.out.println(Strings.fill('A', 44));
+        System.out.println(">>>>> restTemplate: " + restTemplate);
+
+        System.out.println(Strings.fill('B', 44));
+        WebClient client = WebClient.create();
+        Mono<JsonData<Holiday>> jsonData2 = client.get()
+                .uri(holidayV1UrlItem)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<JsonData<Holiday>>() {
+                });
+
+        System.out.println("### HITM (v1): " + jsonData2.block().getData());
+
+        System.out.println(Strings.fill('C', 44));
+        client = WebClient.create();
+        Mono<List<Type>> jsonData = client.get()
+                .uri(typesV2Url)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<Type>>() {
+                });
+
+        System.out.println("### HELL YA  : " + jsonData);
+        List<Type> tts = jsonData.block().stream().collect(Collectors.toList());
+        for (Type t : tts) {
+            System.out.println("### TYPE (v2): " + t);
+        }
+
+        System.out.println(Strings.fill('D', 99));
+        Mono<Holiday> jsonData3 = client.get()
+                .uri(holidayV2UrlItem)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Holiday>() {
+                });
+
+        Holiday h = jsonData3.block();
+        System.out.println("### HITM (v2): " + h);
+
+        assertThat(h.getDescription(), equalTo("New Year's Day"));
+        assertThat(h.isClosest(), equalTo(false));
+        assertThat(h.getOfficialYear(), equalTo(2006));
+
+        System.out.println(Strings.fill('E', 99));
+        /*
+        {
+            "officialYear": 2006,
+            "description": "New Year's Day",
+            "closest": false,
+            "year": 2006,
+            "officialDateYear": 2006,
+            "observedDateFull": "January 02, 2006, Monday",
+            "officialDateFull": "January 01, 2006, Sunday",
+            "types": [
+                "Federal",
+                "State",
+                "UH"
+            ],
+            "observedDate": "2006-01-02",
+            "officialDate": "2006-01-01"
+        }
+        */
+    }
 
     @Test
     public void findHolidays() {

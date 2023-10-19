@@ -48,8 +48,10 @@ public class HolidayService {
     private static final Log logger = LogFactory.getLog(HolidayService.class);
 
     private static final String holidayV2Url = "https://www.test.hawaii.edu/its/cloud/holiday/main/holidayapi/api/v2/holidays";
+    private static final String holidayV1UrlItem = "https://www.test.hawaii.edu/its/cloud/holiday/main/holidayapi/api/holidays/1001/";
+    private static final String holidayV2UrlItem = "https://www.test.hawaii.edu/its/cloud/holiday/main/holidayapi/api/v2/holidays/1001/";
 
-    private final RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
     @Autowired
     private HolidayRepository holidayRepository;
@@ -64,7 +66,7 @@ public class HolidayService {
     private UserRoleRepository userRoleRepository;
 
     // Constructor.
-    public HolidayService(@Autowired RestTemplate restTemplate) throws JsonProcessingException {
+    public void xHolidayService(@Autowired RestTemplate restTemplate) throws JsonProcessingException {
         this.restTemplate = restTemplate;
         System.out.println(">>>>> restTemplate: " + restTemplate);
 
@@ -84,11 +86,6 @@ public class HolidayService {
         JsonNode root = mapper.readTree(responses.getBody());
         JsonNode name = root.path("data");
         System.out.println("NAMEaa: " + name);
-
-        // ResponseEntity<JsonData> response
-
-        // ResponseEntity<List<Type>> response
-        //         = restTemplate.getForObject(typesUrl, Object.class);
 
         ResponseEntity<List<Type>> response = restTemplate
                 .exchange(typesV2Url, HttpMethod.GET, null, new ParameterizedTypeReference<List<Type>>() {
@@ -124,8 +121,6 @@ public class HolidayService {
             System.out.println("### TYPE (v1): " + t);
         }
 
-        System.out.println(Strings.fill('x', 44));
-
         System.out.println(Strings.fill('B', 99));
 
         WebClient client = WebClient.create();
@@ -143,30 +138,43 @@ public class HolidayService {
 
         System.out.println(Strings.fill('D', 99));
 
-        client = WebClient.create();
-        Mono<List<Holiday>> jsonDataHoliday = client.get()
-                .uri(holidayV2Url)
+        System.out.println(Strings.fill('x', 44));
+        System.out.println(Strings.fill('x', 44));
+
+        // ResponseEntity<JsonData<Holiday>> res = restTemplate
+        //         .exchange(holidayV1UrlItem,
+        //                 HttpMethod.GET,
+        //                 null,
+        //                 new ParameterizedTypeReference<JsonData<Holiday>>() {
+        //                 });
+        // client = WebClient.create();
+        Mono<JsonData<Holiday>> jsonData2 = client.get()
+                .uri(holidayV1UrlItem)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<Holiday>>() {
+                .bodyToMono(new ParameterizedTypeReference<JsonData<Holiday>>() {
                 });
 
-        List<Holiday> holidays2 = jsonDataHoliday.block().stream().collect(Collectors.toList());
-        for (Object h : holidays2) {
-            System.out.println("  ---> " + h);
-        }
+        System.out.println("### HITM (v2): " + jsonData2.block().getData());
 
         System.out.println(Strings.fill('E', 99));
-    }
+        System.out.println(Strings.fill('E', 99));
 
-    private <T> T asObject(final String json, Class<T> type) {
-        T result = null;
-        try {
-            result = new ObjectMapper().readValue(json, type);
-        } catch (Exception e) {
-            logger.error("Error: " + e);
-            // Maybe we should throw something?
+        if ("".equals("")) {
+
+            client = WebClient.create();
+            Mono<List<Holiday>> jsonDataHoliday = client.get()
+                    .uri(holidayV2Url)
+                    .retrieve()
+                    .bodyToMono(new ParameterizedTypeReference<List<Holiday>>() {
+                    });
+
+            List<Holiday> holidays2 = jsonDataHoliday.block().stream().collect(Collectors.toList());
+            for (Object h : holidays2) {
+                System.out.println("  ---> " + h);
+            }
         }
-        return result;
+
+        System.out.println(Strings.fill('Z', 99));
     }
 
     @Transactional(readOnly = true)

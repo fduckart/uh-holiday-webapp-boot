@@ -19,11 +19,8 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import edu.hawaii.its.holiday.util.Dates;
 
@@ -47,12 +44,14 @@ public class Holiday implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @JsonIgnore
     @Column(name = "observed_date")
-    @JsonSerialize(using = HolidayDateSerializer.class)
+    // @JsonSerialize(using = HolidayDateSerializer.class)
     private LocalDate observedDate;
 
+    @JsonIgnore
     @Column(name = "official_date")
-    @JsonSerialize(using = HolidayDateSerializer.class)
+    // @JsonSerialize(using = HolidayDateSerializer.class)
     private LocalDate officialDate;
 
     @Column(name = "official_year", nullable = false)
@@ -74,13 +73,22 @@ public class Holiday implements Serializable {
         // Empty.
     }
 
-    // Constructor.
-    public Holiday(@JsonProperty("officialDateFull") LocalDate officialDate,
-                   @JsonProperty("observedDateFull") LocalDate observedDate) {
+    public Holiday(LocalDate officialDate,
+                   LocalDate observedDate) {
         this();
         this.officialDate = officialDate;
         this.observedDate = observedDate;
+        System.out.println("\t >>>>> officialDate: " + officialDate);
+        System.out.println("\t >>>>> observedDate: " + observedDate);
     }
+
+    // Constructor.
+    // public Holiday(@JsonProperty("officialDateFull") LocalDate officialDate,
+    //                @JsonProperty("observedDateFull") LocalDate observedDate) {
+    //     this();
+    //     this.officialDate = officialDate;
+    //     this.observedDate = observedDate;
+    // }
 
     public boolean isClosest() {
         return closest;
@@ -122,7 +130,8 @@ public class Holiday implements Serializable {
         this.observedDate = observedDate;
     }
 
-    @JsonGetter("observedDateFull")
+    @JsonIgnore
+    // @JsonGetter("observedDateFull")
     public LocalDate getObservedDateFull() {
         return observedDate;
     }
@@ -131,7 +140,8 @@ public class Holiday implements Serializable {
         this.observedDate = observedDate;
     }
 
-    @JsonGetter("officialDateFull")
+    @JsonIgnore
+    // @JsonGetter("officialDateFull")
     public LocalDate getOfficialDateFull() {
         return officialDate;
     }
@@ -148,13 +158,15 @@ public class Holiday implements Serializable {
         this.officialDate = officialDate;
     }
 
-    @JsonGetter("observedDate")
+    @JsonIgnore
+    // @JsonGetter("observedDate")
     @Transient
     public String getObservedDateStr() {
         return Dates.formatDate(observedDate, "yyyy-MM-dd");
     }
 
-    @JsonGetter("officialDate")
+    @JsonIgnore
+    // @JsonGetter("officialDate")
     @Transient
     public String getOfficialDateStr() {
         return Dates.formatDate(officialDate, "yyyy-MM-dd");

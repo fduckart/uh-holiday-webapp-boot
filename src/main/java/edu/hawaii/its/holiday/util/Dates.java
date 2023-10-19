@@ -12,7 +12,12 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 public final class Dates {
+
+    private static final Log logger = LogFactory.getLog(Dates.class);
 
     public static final String DATE_FORMAT = "MMMM dd, yyyy, EEEE";
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy");
@@ -20,6 +25,10 @@ public final class Dates {
     // Private constructor; prevent instantiation.
     private Dates() {
         // Empty.
+    }
+
+    public static long compareDates(LocalDateTime date1, LocalDateTime date2) {
+        return ChronoUnit.DAYS.between(date1, date2);
     }
 
     public static long compareDates(LocalDate date1, LocalDate date2) {
@@ -145,6 +154,10 @@ public final class Dates {
         return date.getYear();
     }
 
+    public static int yearOfDate(LocalDateTime date) {
+        return date.getYear();
+    }
+
     public static DayOfWeek dayOfWeek(LocalDate date) {
         return date.getDayOfWeek();
     }
@@ -185,9 +198,18 @@ public final class Dates {
         try {
             localDate = LocalDate.parse(s, DateTimeFormatter.ofPattern(format));
         } catch (Exception e) {
-            // Ignored.
+            logger.warn("Error: " + e);
         }
         return localDate;
     }
 
+    public static LocalDateTime toLocalDateTime(String s, String format) {
+        LocalDateTime localDateTime = null;
+        try {
+            localDateTime = LocalDateTime.parse(s, DateTimeFormatter.ofPattern(format));
+        } catch (Exception e) {
+            logger.warn("Error: " + e);
+        }
+        return localDateTime;
+    }
 }
