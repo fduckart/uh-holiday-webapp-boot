@@ -8,12 +8,14 @@ spring:
             enabled: false
     devtools:
         add-properties: false
+    main:
+        allow-bean-definition-overriding: true
     sql:
         init:
-            mode: always
+            mode: never
     datasource:
         name: holidaydb
-        url: jdbc:h2:mem:holidaydb;MODE=MySQL;INIT=create schema IF NOT EXISTS uhapp_db;DB_CLOSE_ON_EXIT=FALSE
+        url: jdbc:h2:mem:holidaydb;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1;INIT=create schema IF NOT EXISTS holidaydb;
         username: sa
         password: something
         driver-class-name: org.h2.Driver
@@ -54,16 +56,13 @@ logging:
         org.hibernate: WARN
         org.jasig.cas: WARN
 
-
 ---
 environment: localhost
 spring:
     config:
         activate:
             on-profile: localhost
-    main:
-        allow-bean-definition-overriding: true
-
+        import: optional:file:${user.home}/.${user.name}-conf/holiday-overrides.properties
 
 ---
 environment: test
@@ -71,39 +70,21 @@ spring:
     config:
         activate:
             on-profile: test
-    main:
-        allow-bean-definition-overriding: true
-
-app:
-    url:
-        base: https://www.test.hawaii.edu/holiday
-
-
----
-environment: test
-spring:
-    config:
-        activate:
-            on-profile: test
-    main:
-        allow-bean-definition-overriding: true
-
+        import: optional:file:${user.home}/.${user.name}-conf/holiday-overrides.properties
 app:
     url:
         base: https://www.test.hawaii.edu/holiday
 
 ---
-environment: test
+environment: prod
 spring:
     config:
         activate:
-            on-profile: test
-    main:
-        allow-bean-definition-overriding: true
-
+            on-profile: prod
+        import: optional:file:${user.home}/.${user.name}-conf/holiday-overrides.properties
 app:
     url:
-        base: https://www.test.hawaii.edu/holiday
+        base: https://www.hawaii.edu/holiday
 
 ...
 

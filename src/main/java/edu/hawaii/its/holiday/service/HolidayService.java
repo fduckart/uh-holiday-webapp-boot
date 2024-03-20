@@ -17,11 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import edu.hawaii.its.holiday.repository.DesignationRepository;
 import edu.hawaii.its.holiday.repository.HolidayRepository;
 import edu.hawaii.its.holiday.repository.TypeRepository;
-import edu.hawaii.its.holiday.repository.UserRoleRepository;
 import edu.hawaii.its.holiday.type.Designation;
 import edu.hawaii.its.holiday.type.Holiday;
 import edu.hawaii.its.holiday.type.Type;
-import edu.hawaii.its.holiday.type.UserRole;
 import edu.hawaii.its.holiday.util.Dates;
 
 @Service
@@ -36,24 +34,16 @@ public class HolidayService {
     @Autowired
     private TypeRepository typeRepository;
 
-    @Autowired
-    private UserRoleRepository userRoleRepository;
-    
     @Transactional(readOnly = true)
     @Cacheable(value = "holidaysById", key = "#id")
     public Holiday findHoliday(Integer id) {
         return holidayRepository.findById(id).get();
     }
-    
+
     @Transactional(readOnly = true)
     @Cacheable(value = "holidays")
     public List<Holiday> findHolidays() {
         return holidayRepository.findAllByOrderByObservedDateDesc();
-    }
-
-    @Transactional(readOnly = true)
-    public List<UserRole> findUserRoles() {
-        return userRoleRepository.findAll();
     }
 
     @Transactional(readOnly = true)
@@ -76,10 +66,10 @@ public class HolidayService {
 
     public List<Holiday> findHolidaysByType(List<Holiday> holidays, String type) {
         return holidays.stream().filter(holiday -> holiday.getTypes().stream()
-                .anyMatch(types -> types.getDescription().equalsIgnoreCase(type)))
+                        .anyMatch(types -> types.getDescription().equalsIgnoreCase(type)))
                 .collect(Collectors.toList());
     }
-    
+
     public List<Holiday> findHolidaysByMonth(Integer month, Integer year) {
         Month realMonth = Month.of(month);
         LocalDate start = Dates.firstDateOfMonth(realMonth, year);
@@ -117,7 +107,7 @@ public class HolidayService {
 
         return holidays.get(closestIndex);
     }
-    
+
     public Holiday findClosestHolidayByDate(String date, boolean forward, String type) {
         List<Holiday> holidays = holidayRepository.findAllByOrderByObservedDateDesc();
         LocalDate curDate = Dates.toLocalDate(date, "yyyy-MM-dd");
@@ -170,7 +160,7 @@ public class HolidayService {
     public Designation findDesignation(Integer id) {
         return designationRepository.findById(id).get();
     }
-    
+
     @Transactional(readOnly = true)
     public Page<Holiday> findPaginatedHdays(final int page, final int size) {
         return holidayRepository.findAllByOrderByObservedDateAsc(PageRequest.of(page, size));

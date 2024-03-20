@@ -48,7 +48,6 @@ import edu.hawaii.its.holiday.type.Designation;
 import edu.hawaii.its.holiday.type.Holiday;
 import edu.hawaii.its.holiday.type.HolidayAdjuster;
 import edu.hawaii.its.holiday.type.Type;
-import edu.hawaii.its.holiday.type.UserRole;
 import edu.hawaii.its.holiday.util.Dates;
 
 @SpringBootTest(classes = { SpringBootWebApplication.class })
@@ -115,16 +114,6 @@ public class HolidayServiceTest {
         assertThat(ht.getId(), equalTo(4));
         assertThat(ht.getVersion(), equalTo(1));
         assertThat(ht.getDescription(), equalTo("State"));
-    }
-
-    @Test
-    public void findUserRoles() {
-        List<UserRole> userRoles = holidayService.findUserRoles();
-        assertTrue(userRoles.size() >= 2);
-        assertEquals(1, userRoles.get(0).getId().intValue());
-        assertEquals(2, userRoles.get(1).getId().intValue());
-        assertEquals("ROLE_ADMIN", userRoles.get(0).getAuthority());
-        assertEquals("ROLE_USER", userRoles.get(1).getAuthority());
     }
 
     @Test

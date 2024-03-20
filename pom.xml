@@ -13,7 +13,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.16</version>
+        <version>2.7.18</version>
     </parent>
 
     <properties>
@@ -175,6 +175,7 @@
                                 <echo level="info" message="$ ./mvnw clean package"/>
                                 <echo level="info" message="$ ./mvnw -Dmaven.test.skip=true clean package"/>
                                 <echo level="info" message="$ ./mvnw clean test jacoco:report"/>
+                                <echo level="info" message="$ ./mvnw clean spring-boot:run -Dspring.profiles.active=test"/>
                                 <echo level="info" message="$ ./mvnw clean spring-boot:run"/>
                             </target>
                         </configuration>
@@ -193,7 +194,6 @@
                 <configuration>
                     <excludes>
                         <exclude>**/configuration/SpringBootWebApplication.class</exclude>
-                        <exclude>**/configuration/AppConfig.class</exclude>
                         <exclude>**/HolidayService.class</exclude>
                     </excludes>
                 </configuration>

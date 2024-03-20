@@ -24,7 +24,7 @@ public class WebConfig {
 
     @PostConstruct
     public void init() {
-        logger.info("AppConfig init");
-
+        logger.info("init; starting");
+        logger.info("init; finished");
     }
 }
