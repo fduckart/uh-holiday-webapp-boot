@@ -29,6 +29,16 @@ public class Type implements Serializable {
     @JsonIgnore
     private Integer sortId;
 
+    public Type() {
+        // Empty.
+    }
+
+    public Type(Integer id, String description, Integer version) {
+        this.id = id;
+        this.description = description;
+        this.version = version;
+    }
+
     public Integer getId() {
         return id;
     }

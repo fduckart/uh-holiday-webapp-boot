@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 @Configuration
@@ -15,14 +16,15 @@ public class DataInitializationConfig {
     public DataSourceInitializer dataSourceInitializer(DataSource dataSource) {
         DataSourceInitializer initializer = new DataSourceInitializer();
         initializer.setDataSource(dataSource);
-        initializer.setDatabasePopulator(databasePopulator());
+        initializer.setDatabasePopulator(holidayDatabasePopulator());
         return initializer;
     }
 
     @Bean
-    public ResourceDatabasePopulator databasePopulator() {
-        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
-        populator.addScript(new ClassPathResource("data.sql"));
+    public DatabasePopulator holidayDatabasePopulator() {
+        ResourceDatabasePopulator populator = new HolidayDatabasePopulator();
+        populator.addScript(new ClassPathResource("data-two.sql"));
+        // populator.addScript(new ClassPathResource("data-one.sql"));
         return populator;
     }
 }

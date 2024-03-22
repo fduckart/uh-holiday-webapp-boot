@@ -62,7 +62,7 @@ public class Holiday implements Serializable {
             joinColumns = @JoinColumn(name = "holiday_id", unique = false),
             inverseJoinColumns = @JoinColumn(name = "type_id", unique = false))
     @OrderBy(value = "id")
-    private List<Type> types = new ArrayList<>(0);
+    private List<Type> types = new ArrayList<>();
 
     @Transient
     private boolean closest;
@@ -70,7 +70,6 @@ public class Holiday implements Serializable {
     // Constructor.
     public Holiday() {
         this.closest = false;
-        // Empty.
     }
 
     // Constructor.
@@ -142,10 +141,20 @@ public class Holiday implements Serializable {
         return Dates.formatDate(officialDate, "yyyy-MM-dd");
     }
 
+    public Integer getOfficialYear() {
+        return officialYear;
+    }
+
+    public void setOfficialYear(Integer officialYear) {
+        this.officialYear = officialYear;
+    }
+
+    //@JsonSerialize(using = TypeSerializer.class)
     public List<Type> getTypes() {
         return types;
     }
 
+    //@JsonDeserialize(using = TypeDeserializer.class)
     public void setTypes(List<Type> types) {
         this.types = types != null ? types : new ArrayList<>();
     }
@@ -163,13 +172,13 @@ public class Holiday implements Serializable {
         return null;
     }
 
-    @Transient
-    public Integer getOfficialYear() {
-        if (officialDate != null) {
-            return Dates.yearOfDate(officialDate);
-        }
-        return null;
-    }
+    // @Transient
+    // public Integer getOfficialYear() {
+    //     if (officialDate != null) {
+    //         return Dates.yearOfDate(officialDate);
+    //     }
+    //     return null;
+    // }
 
     @Transient
     public void addType(Type type) {
