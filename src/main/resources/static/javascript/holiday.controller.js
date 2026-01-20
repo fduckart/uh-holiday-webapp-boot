@@ -4,7 +4,7 @@ function HolidayJsController($scope, dataProvider) {
     var url = "api/holidays";
     $scope.years = [];
     $scope.orderByField = "observedDateFull.toEpochDay";
-    $scope.reverseSort = false;
+    $scope.reverseSort = true;
     $scope.holidays = [];
 
     $scope.init = function() {
@@ -110,12 +110,11 @@ function HolidayGridJsController($scope, holidayJsService) {
 
 holidayApp.controller("HolidayGridJsController", HolidayGridJsController);
 
-
 function TypesJsController($scope, $log, dataProvider) {
     var URL_LOAD = "api/types";
     $scope.types = [];
     $log.debug("constructed.");
-    
+
     $scope.init = function() {
         $log.debug("init; started.");
         $scope.loadData();
@@ -124,7 +123,7 @@ function TypesJsController($scope, $log, dataProvider) {
     $scope.loadData = function() {
         dataProvider.loadData(function(data) {
             $scope.types = data.data;
-        }, URL_LOAD);        
+        }, URL_LOAD);
     };
 }
 holidayApp.controller("TypesJsController", TypesJsController);
